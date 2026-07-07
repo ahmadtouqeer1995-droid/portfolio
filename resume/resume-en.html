@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ahmad Touqeer — Shopify Developer — Resume</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { background: #f4f4f5; }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #171717;
+  }
+  .page {
+    width: 210mm; min-height: 297mm; margin: 0 auto; background: #ffffff;
+    padding: 11mm 12mm; position: relative; overflow: hidden;
+  }
+  /* soft color glows, echoing the fluid background */
+  .glow { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .18; pointer-events: none; }
+  .glow.g1 { width: 260px; height: 260px; background: #34d399; top: -80px; right: -60px; }
+  .glow.g2 { width: 220px; height: 220px; background: #a855f7; bottom: 60px; left: -80px; }
+  .glow.g3 { width: 200px; height: 200px; background: #22d3ee; bottom: -70px; right: 30%; }
+  .mono { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; letter-spacing: .14em; text-transform: uppercase; }
+  .card {
+    position: relative; background: rgba(255,255,255,.6); border: 1px solid #e5e5e5;
+    border-radius: 14px; padding: 10px 14px; box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  }
+  .label { font-size: 7.5px; color: #737373; margin-bottom: 6px; }
+  /* header */
+  header { position: relative; padding: 2mm 0 5mm; }
+  h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+  h1 .light { font-weight: 300; font-style: italic; }
+  .role { font-size: 10px; color: #525252; margin-top: 3px; }
+  .contact { margin-top: 7px; font-size: 8.4px; color: #404040; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .contact b { font-weight: 600; }
+  .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 4mm 0; position: relative; }
+  .stat { text-align: center; padding: 9px 6px; }
+  .stat .n { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; }
+  .stat .t { font-size: 7px; color: #737373; margin-top: 3px; }
+  /* sections */
+  section { margin-top: 4mm; position: relative; }
+  h2 { font-size: 11.5px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 6px; }
+  h2 .bar { display: inline-block; width: 16px; height: 3px; border-radius: 2px; margin-right: 7px; vertical-align: middle; }
+  .job { margin-bottom: 8px; }
+  .job .top { display: flex; justify-content: space-between; align-items: baseline; }
+  .job h3 { font-size: 10px; font-weight: 700; }
+  .job .when { font-size: 8px; color: #737373; font-family: ui-monospace, Consolas, monospace; }
+  .job .where { font-size: 8px; color: #737373; margin-top: 1px; }
+  ul { margin: 5px 0 0 13px; }
+  li { font-size: 8.6px; color: #404040; line-height: 1.5; margin-bottom: 2.5px; }
+  li b { color: #171717; }
+  .two { display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; }
+  .skill-group { margin-bottom: 6px; }
+  .skill-group .g { font-size: 8px; font-weight: 700; margin-bottom: 3px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 3px; }
+  .chip {
+    font-size: 7.6px; color: #404040; border: 1px solid #e5e5e5; background: #fafafa;
+    border-radius: 999px; padding: 1.5px 7px;
+  }
+  .edu h3 { font-size: 9.4px; font-weight: 700; }
+  .edu p { font-size: 8.4px; color: #525252; margin-top: 2px; }
+  .lang-row { display: flex; justify-content: space-between; font-size: 8.6px; color: #404040; padding: 3px 0; border-bottom: 1px dashed #e5e5e5; }
+  .lang-row:last-child { border-bottom: 0; }
+  .profile p { font-size: 9px; color: #404040; line-height: 1.55; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+
+  <header>
+    <h1>Ahmad <span class="light">Touqeer</span></h1>
+    <div class="role mono">Shopify Developer</div>
+    <div class="contact">
+      <span><b>Paris, France</b></span>
+      <span>ahmadtouqeer2011@gmail.com</span>
+      <span>+33 6 51 96 47 71</span>
+      <span>ahmadtouqeer1995-droid.github.io/portfolio</span>
+      <span>English &amp; French (bilingual)</span>
+    </div>
+  </header>
+
+  <div class="card profile">
+    <div class="label mono">Profile</div>
+    <p>Freelance Shopify developer with 8 years of experience. I have designed and developed <b>50+ Shopify themes sold in more than 1,000 copies online</b>, and built <b>100+ stores</b> for e-commerce brands. I handle the full stack of a Shopify business — theme, storefront, backend, integrations — and for the last two years I have specialized in AI agents and automation with n8n and LangGraph, plus AI-generated product photos, videos and UGC.</p>
+  </div>
+
+  <div class="stats">
+    <div class="card stat"><div class="n">8+</div><div class="t mono">Years on Shopify</div></div>
+    <div class="card stat"><div class="n">50+</div><div class="t mono">Themes built</div></div>
+    <div class="card stat"><div class="n">1,000+</div><div class="t mono">Theme copies sold</div></div>
+    <div class="card stat"><div class="n">100+</div><div class="t mono">Stores delivered</div></div>
+  </div>
+
+  <section>
+    <h2><span class="bar" style="background:#329696"></span>Experience</h2>
+    <div class="card">
+      <div class="job">
+        <div class="top"><h3>Freelance Shopify Developer</h3><span class="when">2017 — Present</span></div>
+        <div class="where">Self-employed · Paris / Remote</div>
+        <ul>
+          <li>Designed and developed <b>50+ Shopify themes</b>, sold in <b>1,000+ copies</b> online.</li>
+          <li>Built and launched <b>100+ Shopify stores</b> for brands in fashion, beauty, food &amp; beverage, jewelry, eyewear and homeware.</li>
+          <li>Handle the <b>backend of Shopify stores</b>: apps and integrations, Stripe payments, inventory and order workflows, multi-store setups.</li>
+          <li>Optimize storefronts for speed and conversion; support store owners long-term with maintenance and content freedom (no-code editing).</li>
+        </ul>
+      </div>
+      <div class="job" style="margin-bottom:0">
+        <div class="top"><h3>AI Agents &amp; Automation</h3><span class="when">2024 — Present</span></div>
+        <div class="where">Freelance · integrated into client stores and businesses</div>
+        <ul>
+          <li>Build <b>AI agents and chatbots</b> with n8n and LangGraph for websites, Shopify stores and business operations.</li>
+          <li>Automate order, marketing and support workflows end-to-end, saving clients hours every week.</li>
+          <li>Produce <b>AI-generated product photos, videos and UGC-style content</b> for brands.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="two">
+    <div>
+      <h2><span class="bar" style="background:#856ED9"></span>Skills</h2>
+      <div class="card">
+        <div class="skill-group">
+          <div class="g">Shopify &amp; E-commerce</div>
+          <div class="chips"><span class="chip">Liquid themes</span><span class="chip">Theme development</span><span class="chip">Store setup</span><span class="chip">Shopify backend &amp; apps</span><span class="chip">Stripe</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="g">Frontend</div>
+          <div class="chips"><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">GSAP</span><span class="chip">Figma / UI-UX</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="g">Backend</div>
+          <div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Django</span><span class="chip">MongoDB</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="g">AI &amp; Automation</div>
+          <div class="chips"><span class="chip">n8n</span><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">Claude Code</span><span class="chip">Codex</span><span class="chip">AI content generation</span></div>
+        </div>
+        <div class="skill-group" style="margin-bottom:0">
+          <div class="g">Cloud &amp; Tools</div>
+          <div class="chips"><span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Google Cloud</span><span class="chip">Vercel</span><span class="chip">Cloudflare</span><span class="chip">Git / GitHub</span></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2><span class="bar" style="background:#3E9858"></span>Education</h2>
+      <div class="card edu">
+        <h3>BTS Systèmes Numériques</h3>
+        <p>Lycée Georges Brassens</p>
+        <p>2017</p>
+      </div>
+      <h2 style="margin-top:12px"><span class="bar" style="background:#C19433"></span>Languages</h2>
+      <div class="card">
+        <div class="lang-row"><span>French</span><span class="mono" style="font-size:7px">Bilingual</span></div>
+        <div class="lang-row"><span>English</span><span class="mono" style="font-size:7px">Bilingual</span></div>
+      </div>
+      <h2 style="margin-top:12px"><span class="bar" style="background:#22d3ee"></span>Portfolio</h2>
+      <div class="card">
+        <p style="font-size:8.4px;color:#404040;line-height:1.5">10 store case studies with videos and full case notes:<br><b>ahmadtouqeer1995-droid.github.io/portfolio</b></p>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>
