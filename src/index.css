@@ -158,3 +158,23 @@ body {
   width: 0;
   height: 0;
 }
+
+/* Mobile: shrink the tab bar so it fits a phone screen */
+@media (max-width: 639px) {
+  .menu {
+    width: 26em;
+    max-width: calc(100vw - 24px);
+    font-size: 10px;
+    padding: 0 1.6em;
+  }
+}
+
+/* Skills orbit is designed for ~1220px — scale it down to fit the viewport */
+.orbit-scale {
+  transform-origin: center center;
+}
+@media (max-width: 1219px) {
+  .orbit-scale {
+    transform: scale(calc(100vw / 1220));
+  }
+}

@@ -57,7 +57,7 @@ function Me() {
               <p className='font-mono text-xs tracking-widest text-neutral-500 uppercase'>
                 {t('meLabel')}
               </p>
-              <h1 className='mt-2 text-5xl font-bold tracking-tight text-neutral-900 md:text-6xl'>
+              <h1 className='mt-2 text-4xl font-bold tracking-tight break-words text-neutral-900 sm:text-5xl md:text-6xl'>
                 Ahmad <span className='italic font-light'>Touqeer</span>
               </h1>
               <p className='mt-2 font-mono text-sm tracking-widest text-neutral-500 uppercase'>

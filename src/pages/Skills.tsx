@@ -109,8 +109,9 @@ function Skills() {
         {t('home')}
       </Link>
 
-      {/* Orbiting skill logos — hover a logo to reveal the skill name */}
-      <div className='absolute inset-0 z-10'>
+      {/* Orbiting skill logos — hover a logo to reveal the skill name.
+          orbit-scale shrinks the whole orbit to fit small screens. */}
+      <div className='orbit-scale absolute inset-0 z-10'>
         <MultiOrbitSemiCircle rings={rings} />
       </div>
     </div>

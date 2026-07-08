@@ -64,7 +64,7 @@ function Projects() {
         </Link>
 
         {/* Title — top left, 100px below the home button */}
-        <h1 className='mt-[100px] text-5xl font-bold tracking-tight text-neutral-900 md:text-6xl'>
+        <h1 className='mt-[60px] text-4xl font-bold tracking-tight text-neutral-900 sm:mt-[100px] sm:text-5xl md:text-6xl'>
           <span className='italic font-light'>{t('projectsTitle')}</span>
         </h1>
 

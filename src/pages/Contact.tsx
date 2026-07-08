@@ -50,7 +50,7 @@ function Contact() {
           <p className='font-mono text-xs tracking-widest text-neutral-500 uppercase'>
             {t('contactLabel')}
           </p>
-          <h1 className='mt-3 text-5xl font-bold tracking-tight text-neutral-900 md:text-6xl'>
+          <h1 className='mt-3 text-4xl font-bold tracking-tight break-words text-neutral-900 sm:text-5xl md:text-6xl'>
             {t('contactHeading')}{' '}
             <span className='italic font-light'>{t('contactHeadingItalic')}</span>
           </h1>
@@ -59,9 +59,9 @@ function Contact() {
           <div className='mt-8'>
             <a
               href='mailto:ahmadtouqeer2011@gmail.com'
-              className='inline-flex items-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-700'
+              className='inline-flex max-w-full items-center gap-2 rounded-full bg-neutral-900 px-4 py-3 text-xs font-semibold break-all text-white transition-colors hover:bg-neutral-700 sm:px-6 sm:text-sm'
             >
-              <Mail className='h-4 w-4' />
+              <Mail className='h-4 w-4 shrink-0' />
               ahmadtouqeer2011@gmail.com
             </a>
           </div>

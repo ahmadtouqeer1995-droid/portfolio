@@ -67,8 +67,9 @@ function Home() {
         <Robot />
       </div>
 
-      {/* Glass tab-bar menu + language switcher — top right. Home page only. */}
-      <div className='absolute top-6 right-6 z-50 flex items-start gap-3'>
+      {/* Glass tab-bar menu + language switcher — top right. Home page only.
+          Stacks vertically on phones so nothing overflows. */}
+      <div className='absolute top-4 right-4 z-50 flex flex-col items-end gap-2 sm:top-6 sm:right-6 sm:flex-row sm:items-start sm:gap-3'>
         <AnimatedTabBar
           items={data.map((item) => {
             const Icon = item.icon;
