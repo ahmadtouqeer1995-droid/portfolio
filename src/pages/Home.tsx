@@ -11,18 +11,19 @@ import FluidCursor from '@/components/FluidCursor';
 import { AnimatedTabBar } from '@/components/ui/animated-tab-bar';
 import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { Robot } from '@/components/ui/robot-hero';
-import { usePageMeta } from '@/i18n';
+import { useLang, usePageMeta, type StringKey } from '@/i18n';
 
 // Same items, icons and colors as toukoum.fr's quick-question buttons
-const data = [
-  { title: 'Me', color: '#329696', icon: Laugh, path: '/me' },
-  { title: 'Projects', color: '#3E9858', icon: BriefcaseBusiness, path: '/projects' },
-  { title: 'Skills', color: '#856ED9', icon: Layers, path: '/skills' },
-  { title: 'Contact', color: '#C19433', icon: UserRoundSearch, path: '/contact' },
+const data: { labelKey: StringKey; color: string; icon: typeof Laugh; path: string }[] = [
+  { labelKey: 'meLabel', color: '#329696', icon: Laugh, path: '/me' },
+  { labelKey: 'projectsTitle', color: '#3E9858', icon: BriefcaseBusiness, path: '/projects' },
+  { labelKey: 'skillsTitle', color: '#856ED9', icon: Layers, path: '/skills' },
+  { labelKey: 'navContact', color: '#C19433', icon: UserRoundSearch, path: '/contact' },
 ];
 
 function Home() {
   const navigate = useNavigate();
+  const { t } = useLang();
   const pendingNav = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   usePageMeta(
@@ -71,7 +72,7 @@ function Home() {
         <AnimatedTabBar
           items={data.map((item) => {
             const Icon = item.icon;
-            return { icon: <Icon className='icon' />, color: item.color };
+            return { icon: <Icon className='icon' />, color: item.color, label: t(item.labelKey) };
           })}
           onTabChange={handleTabChange}
         />

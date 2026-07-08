@@ -16,6 +16,8 @@ export const LANGUAGES: { code: Lang; label: string }[] = [
 const STRINGS = {
   en: {
     home: 'Home',
+    skillsTitle: 'Skills',
+    navContact: 'Contact',
     projectsTitle: 'Projects',
     backToProjects: 'Projects',
     notFound: 'Project not found.',
@@ -55,6 +57,8 @@ const STRINGS = {
   },
   fr: {
     home: 'Accueil',
+    skillsTitle: 'Compétences',
+    navContact: 'Contact',
     projectsTitle: 'Projets',
     backToProjects: 'Projets',
     notFound: 'Projet introuvable.',
@@ -94,6 +98,8 @@ const STRINGS = {
   },
   es: {
     home: 'Inicio',
+    skillsTitle: 'Habilidades',
+    navContact: 'Contacto',
     projectsTitle: 'Proyectos',
     backToProjects: 'Proyectos',
     notFound: 'Proyecto no encontrado.',
@@ -133,6 +139,8 @@ const STRINGS = {
   },
   it: {
     home: 'Home',
+    skillsTitle: 'Competenze',
+    navContact: 'Contatti',
     projectsTitle: 'Progetti',
     backToProjects: 'Progetti',
     notFound: 'Progetto non trovato.',
@@ -172,6 +180,8 @@ const STRINGS = {
   },
   de: {
     home: 'Startseite',
+    skillsTitle: 'Skills',
+    navContact: 'Kontakt',
     projectsTitle: 'Projekte',
     backToProjects: 'Projekte',
     notFound: 'Projekt nicht gefunden.',
