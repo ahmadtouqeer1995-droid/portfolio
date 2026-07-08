@@ -81,7 +81,7 @@ function ProjectDetail() {
   }));
 
   return (
-    <div className='relative h-full w-full overflow-y-auto bg-white'>
+    <div className='relative h-full w-full bg-white'>
       {/* Reactive fluid background — warm mix (red / orange / gold / pink) */}
       <FluidCursor hues={[0.99, 0.05, 0.11, 0.92]} />
 
@@ -94,7 +94,10 @@ function ProjectDetail() {
         {t('backToProjects')}
       </Link>
 
-      <div className='relative z-10 mx-auto w-full max-w-[1200px] px-4 pt-24 pb-20'>
+      {/* Full-viewport scroller above the background so the wheel works
+          anywhere on the page, not just over the content column */}
+      <div className='absolute inset-0 z-10 overflow-y-auto'>
+      <div className='mx-auto w-full max-w-[1200px] px-4 pt-24 pb-20'>
         {/* Title */}
         <section className='rounded-[2.5rem] border border-white/60 bg-white/30 p-8 shadow-lg shadow-black/5 backdrop-blur-md md:p-12'>
           <h1 className='text-5xl font-bold tracking-tight text-neutral-900 md:text-6xl'>
@@ -138,6 +141,7 @@ function ProjectDetail() {
         <Section id='challenges' title={t('challenges')} paragraphs={project.challenges} />
         <Section id='solutions' title={t('solutions')} paragraphs={project.solutions} />
         <Section id='results' title={t('results')} paragraphs={project.results} />
+      </div>
       </div>
     </div>
   );

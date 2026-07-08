@@ -46,11 +46,14 @@ function Projects() {
   );
 
   return (
-    <div className='relative h-full w-full overflow-y-auto bg-white'>
+    <div className='relative h-full w-full bg-white'>
       {/* Reactive fluid background — greens / teals / lime mix */}
       <FluidCursor hues={[0.22, 0.3, 0.38, 0.45, 0.14]} />
 
-      <div className='relative z-10 mx-auto w-full max-w-[1200px] px-6 pt-6 pb-20'>
+      {/* Full-viewport scroller above the background so the wheel works
+          anywhere on the page, not just over the content column */}
+      <div className='absolute inset-0 z-10 overflow-y-auto'>
+      <div className='mx-auto w-full max-w-[1200px] px-6 pt-6 pb-20'>
         {/* Back to home */}
         <Link
           to='/'
@@ -75,6 +78,7 @@ function Projects() {
             />
           ))}
         </div>
+      </div>
       </div>
     </div>
   );

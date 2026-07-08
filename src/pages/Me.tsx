@@ -27,7 +27,7 @@ function Me() {
   );
 
   return (
-    <div className='relative h-full w-full overflow-y-auto bg-white'>
+    <div className='relative h-full w-full bg-white'>
       {/* Reactive fluid background — cyan / blue mix */}
       <FluidCursor hues={[0.5, 0.56, 0.62]} />
 
@@ -40,7 +40,10 @@ function Me() {
         {t('home')}
       </Link>
 
-      <div className='relative z-10 mx-auto w-full max-w-[1100px] px-4 pt-24 pb-20'>
+      {/* Full-viewport scroller above the background so the wheel works
+          anywhere on the page, not just over the content column */}
+      <div className='absolute inset-0 z-10 overflow-y-auto'>
+      <div className='mx-auto w-full max-w-[1100px] px-4 pt-24 pb-20'>
         {/* Hero */}
         <section className='rounded-[2.5rem] border border-white/60 bg-white/30 p-8 shadow-lg shadow-black/5 backdrop-blur-md md:p-12'>
           <div className='flex flex-col items-start gap-8 md:flex-row md:items-center'>
@@ -129,6 +132,7 @@ function Me() {
             <p className='leading-relaxed text-neutral-600'>{t('meJourneyText')}</p>
           </div>
         </section>
+      </div>
       </div>
     </div>
   );
