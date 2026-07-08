@@ -41,8 +41,8 @@ function Projects() {
   const projects = useProjects();
 
   usePageMeta(
-    'Projects — Ahmad Touqeer',
-    'Shopify stores built by Ahmad Touqeer — case studies with challenges, solutions and results.'
+    'Shopify Store Case Studies — Ahmad Touqeer',
+    '10 real Shopify builds — skincare, audio, jewelry, fashion and more — each with a video walkthrough, screenshots, challenges, solutions and results.'
   );
 
   return (

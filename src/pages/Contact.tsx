@@ -11,8 +11,8 @@ const WHATSAPP_URL = 'https://wa.me/33651964771';
 function Contact() {
   const { t } = useLang();
   usePageMeta(
-    'Contact — Ahmad Touqeer',
-    'Contact Ahmad Touqeer, full stack web developer — by email or WhatsApp.'
+    'Hire a Shopify Developer in Paris — Ahmad Touqeer',
+    'Email or WhatsApp me about your store, web app or automation project. Based in Paris, working in English and French.'
   );
 
   return (

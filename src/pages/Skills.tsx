@@ -91,8 +91,8 @@ const rings: OrbitRingConfig[] = [
 function Skills() {
   const { t } = useLang();
   usePageMeta(
-    'Skills — Ahmad Touqeer',
-    'Skills and tools Ahmad Touqeer works with — JavaScript, TypeScript, React, Node.js, databases, cloud and AI tooling.'
+    'Web Development Skills & Stack — Ahmad Touqeer',
+    'The stack behind 100+ Shopify stores: JavaScript, TypeScript, React, Node.js, PostgreSQL, AWS, n8n, LangGraph and more.'
   );
 
   return (

@@ -57,9 +57,11 @@ function ProjectDetail() {
   const project = projects.find((p) => p.id === id);
 
   usePageMeta(
-    project ? `${project.title} — Ahmad Touqeer` : 'Projects — Ahmad Touqeer',
     project
-      ? `${project.title} case study by Ahmad Touqeer — challenges, solutions and results.`
+      ? `${project.title} — Shopify Store Case Study | Ahmad Touqeer`
+      : 'Shopify Store Case Studies — Ahmad Touqeer',
+    project
+      ? `${project.title}, a ${project.industry.toLowerCase()} store on Shopify — the challenge, the build and the results, with video and screenshots.`
       : undefined
   );
 

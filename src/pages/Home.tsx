@@ -25,7 +25,10 @@ function Home() {
   const navigate = useNavigate();
   const pendingNav = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  usePageMeta('Ahmad Touqeer — Full Stack Web Developer');
+  usePageMeta(
+    'Shopify Developer in Paris — Ahmad Touqeer',
+    'Freelance Shopify developer in Paris — 100+ stores built, 50+ themes sold 1,000+ times. Storefronts that convert, plus AI agents and automation.'
+  );
 
   // Navigate AFTER the tab animation (0.7s) has played — navigating right
   // away unmounts the tab bar before the bump/color ever move.
@@ -46,7 +49,7 @@ function Home() {
   return (
     <>
       {/* Page h1 for SEO — visually the page is the watermark + robot */}
-      <h1 className='sr-only'>Ahmad Touqeer — Full Stack Web Developer</h1>
+      <h1 className='sr-only'>Ahmad Touqeer — Shopify Developer in Paris, Full Stack & AI Automation</h1>
 
       {/* Name watermark — sits under the fluid canvas so the fluid paints over it */}
       <div className='pointer-events-none fixed bottom-0 left-1/2 -translate-x-1/2 translate-y-[28%] select-none'>

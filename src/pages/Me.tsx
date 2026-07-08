@@ -15,15 +15,16 @@ const PILLARS: { icon: typeof Monitor; titleKey: StringKey; textKey: StringKey }
 
 const STATS: { value: string; labelKey: StringKey }[] = [
   { value: '8+', labelKey: 'meStatsYears' },
+  { value: '100+', labelKey: 'meStatsProjects' },
+  { value: '1,000+', labelKey: 'meStatsThemes' },
   { value: '2+', labelKey: 'meStatsAI' },
-  { value: '10+', labelKey: 'meStatsProjects' },
 ];
 
 function Me() {
   const { t } = useLang();
   usePageMeta(
-    'About Me — Ahmad Touqeer',
-    'Ahmad Touqeer — freelance Shopify & full stack developer in Paris. 8 years of e-commerce builds, plus AI agents, automation and AI content.'
+    'About — Shopify Developer in Paris | Ahmad Touqeer',
+    '8 years freelance, 100+ stores, 50+ themes sold 1,000+ times. Who I am, what I build, and the clients I work best with.'
   );
 
   return (
@@ -85,7 +86,7 @@ function Me() {
         </section>
 
         {/* Stats */}
-        <section className='mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3'>
+        <section className='mt-6 grid grid-cols-2 gap-4 md:grid-cols-4'>
           {STATS.map((stat) => (
             <div
               key={stat.labelKey}
