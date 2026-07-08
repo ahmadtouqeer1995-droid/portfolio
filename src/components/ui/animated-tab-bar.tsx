@@ -13,34 +13,41 @@ export interface TabItem {
 
 export interface AnimatedTabBarProps {
   items: TabItem[];
-  defaultIndex?: number;
+  /** null = nothing selected on landing (no color until a tab is clicked) */
+  defaultIndex?: number | null;
   onTabChange?: (index: number) => void;
 }
 
 export const AnimatedTabBar: React.FC<AnimatedTabBarProps> = ({
   items,
-  defaultIndex = 0,
+  defaultIndex = null,
   onTabChange,
 }) => {
-  const [activeIndex, setActiveIndex] = useState(defaultIndex);
+  const [activeIndex, setActiveIndex] = useState<number | null>(defaultIndex);
   const menuRef = useRef<HTMLMenuElement>(null);
   const menuBorderRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const offsetMenuBorder = useCallback(() => {
-    const activeItem = itemRefs.current[activeIndex];
     const menu = menuRef.current;
     const menuBorder = menuBorderRef.current;
+    if (!menu || !menuBorder) return;
 
-    if (activeItem && menu && menuBorder) {
-      const offsetActiveItem = activeItem.getBoundingClientRect();
-      const left = Math.floor(
-        offsetActiveItem.left -
-          menu.getBoundingClientRect().left -
-          (menuBorder.offsetWidth - offsetActiveItem.width) / 2
-      );
-      menuBorder.style.transform = `translate3d(${left}px, 0, 0)`;
+    const activeItem = activeIndex === null ? null : itemRefs.current[activeIndex];
+    if (!activeItem) {
+      // Nothing selected yet — keep the bump invisible
+      menuBorder.style.opacity = '0';
+      return;
     }
+
+    const offsetActiveItem = activeItem.getBoundingClientRect();
+    const left = Math.floor(
+      offsetActiveItem.left -
+        menu.getBoundingClientRect().left -
+        (menuBorder.offsetWidth - offsetActiveItem.width) / 2
+    );
+    menuBorder.style.opacity = '1';
+    menuBorder.style.transform = `translate3d(${left}px, 0, 0)`;
   }, [activeIndex]);
 
   useLayoutEffect(() => {
