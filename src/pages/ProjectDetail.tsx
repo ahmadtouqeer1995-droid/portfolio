@@ -98,16 +98,12 @@ function ProjectDetail() {
           anywhere on the page, not just over the content column */}
       <div className='absolute inset-0 z-10 overflow-y-auto'>
       <div className='mx-auto w-full max-w-[1200px] px-4 pt-24 pb-20'>
-        {/* Title */}
-        <section className='rounded-[2.5rem] border border-white/60 bg-white/30 p-8 shadow-lg shadow-black/5 backdrop-blur-md md:p-12'>
-          <h1 className='text-5xl font-bold tracking-tight text-neutral-900 md:text-6xl'>
-            {project.title}
-          </h1>
-        </section>
+        {/* Title stays hidden — only for SEO / screen readers */}
+        <h1 className='sr-only'>{project.title}</h1>
 
         {/* Pictures first — arrows left/right. Frame matches the pictures'
             native ~1122x1218 pixels so they show full size, uncropped. */}
-        <section className='mt-6 rounded-[2rem] border border-white/60 bg-white/40 p-4 shadow-sm backdrop-blur-md md:p-6'>
+        <section className='rounded-[2rem] border border-white/60 bg-white/40 p-4 shadow-sm backdrop-blur-md md:p-6'>
           <div className='mx-auto w-full max-w-[1122px] aspect-[1122/1218]'>
             <FramerCarousel key={project.id} items={carouselItems} />
           </div>
