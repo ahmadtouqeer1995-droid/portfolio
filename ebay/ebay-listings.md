@@ -63,6 +63,8 @@ https://ahmadtouqeer1995-droid.github.io/portfolio/
 
 **WHAT I NEED FROM YOU**
 
+- 4–5 stores you'd like to copy or be inspired by (send me the links — this is
+  the fastest way to nail the style you want)
 - Your logo and brand assets (or I can generate AI product photos and visuals
   as an optional extra)
 - Product information (names, prices, descriptions or raw notes)
@@ -126,14 +128,15 @@ https://ahmadtouqeer1995-droid.github.io/portfolio/
 
 **HOW IT WORKS**
 
-1. After purchase, you send me your brand assets and 2–3 examples of styles
-   you like
+1. After purchase, you send me your brand assets and 4–5 stores you'd like to
+   copy or be inspired by
 2. I design and develop the theme; you get a preview link
 3. One round of revisions included
 4. I install and configure the theme on your store, ready to go live
 
 **WHAT I NEED FROM YOU**
 
+- 4–5 stores you'd like to copy or be inspired by (links are enough)
 - Logo and brand colors (if you have them — I can propose a direction if not)
 - Access as staff/collaborator to your Shopify store for installation
 
