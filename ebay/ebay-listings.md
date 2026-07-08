@@ -1,9 +1,10 @@
 # eBay Listings — Ahmad Touqeer, Shopify Developer
 
-Two ready-to-post listings. Copy each block into eBay as-is (titles are under eBay's
-80-character limit). Suggested category for both:
+Three ready-to-post listings. Copy each block into eBay as-is (titles are under
+eBay's 80-character limit). Suggested category for all:
 **Specialty Services > Web & Computer Services > Web Site Design**.
-Pictures: `listing-full-store.jpg` and `listing-theme.jpg` (1600 x 1600, eBay-ready).
+Pictures: `listing-full-store.jpg`, `listing-theme.jpg` and `listing-website-az.jpg`
+(1600 x 1600, eBay-ready).
 
 ---
 
@@ -151,3 +152,89 @@ Need the full store setup instead (products, payments, shipping, SEO)? Check my
 other listing: "Complete Shopify Store Setup with Custom Theme."
 
 Questions? Message me — I reply quickly.
+
+---
+
+## LISTING 3 — Complete Website A to Z (Domain, Hosting, Deployment, Stripe)
+
+**Title (77 chars):**
+`Complete Website Design A to Z | Domain, Hosting, Deployment, Stripe Payment`
+
+**Suggested price:** €599 (fixed price / Buy It Now) · **Delivery:** 10–14 days
+
+**Item specifics:**
+- Service Type: Website Design, Development & Deployment
+- Provider: Freelance developer, Paris, France
+- Languages: English & French (bilingual)
+- Delivery: Online / remote, worldwide
+- Experience: 8+ years, 100+ sites and stores delivered
+
+**Description:**
+
+Your complete website, from nothing to live on the internet — one package, one
+developer, nothing left for you to figure out.
+
+I'm Ahmad Touqeer, a freelance web developer in Paris with 8 years of experience
+and 100+ sites and stores delivered. This is the full A-to-Z package: I design
+your website, build it, connect your domain, deploy it, and plug in Stripe so
+you can take payments from day one.
+
+**WHAT YOU GET**
+
+- A custom website designed for your brand — modern, fast and mobile-first
+  (built with React/Next.js or the stack that fits your project, no bloated
+  page builders)
+- Up to 6 pages: home, services/products, about, contact, plus two of your
+  choice (more on request)
+- Your domain connected (I help you buy it in your name, so YOU own it)
+- Professional hosting and deployment configured, with SSL/HTTPS (secure
+  padlock) included
+- Stripe payments integrated: one-time payments or bookings; subscriptions
+  possible on request
+- Contact form connected to your email
+- SEO foundations: clean structure, titles and descriptions, fast loading,
+  Google-ready
+- Everything editable and documented at handover, plus a walkthrough call
+- 14 days of free post-delivery support
+
+**SEE MY WORK BEFORE YOU BUY**
+
+10 real projects with video walkthroughs, screenshots and full case studies on
+my portfolio:
+https://ahmadtouqeer1995-droid.github.io/portfolio/
+
+**HOW IT WORKS**
+
+1. After purchase, you receive a short questionnaire (business, goals, pages,
+   style)
+2. I design the site; you get a preview link and one round of revisions included
+3. I connect the domain, deploy to production and integrate Stripe
+4. Handover: your site live at your own domain, taking payments, with a
+   walkthrough of how to manage it
+
+**WHAT I NEED FROM YOU**
+
+- 4–5 websites you'd like to copy or be inspired by (send me the links — this
+  is the fastest way to nail the style you want)
+- Your logo, brand assets and page texts (or raw notes — I can shape them)
+- 10 minutes to create your Stripe account with my guidance (payments must be
+  in your name, so the money goes straight to you)
+
+**GOOD TO KNOW (transparent costs)**
+
+- The domain (~10–15 €/year) is purchased in YOUR name — you own it forever
+- Hosting for most sites fits free professional tiers (Vercel / Cloudflare);
+  if your project needs paid hosting, I'll tell you before starting
+- Stripe charges its standard per-transaction fees; there is no fee from me
+
+**WHY ME**
+
+- 8+ years building for the web, 100+ sites and stores delivered
+- Full stack: design (Figma), front-end (React, TypeScript), back-end (Node.js),
+  databases, cloud (AWS, Azure, Google Cloud)
+- I also build AI automations (chatbots, lead routing, follow-ups with n8n) —
+  ask me about adding one to your site
+- Based in Paris, working in English and French
+- Serious about deadlines and about work done properly
+
+Questions before buying? Message me — I reply quickly.
