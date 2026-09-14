@@ -1,8 +1,9 @@
 import { useLang, type Lang } from '@/i18n';
 
-// Work history and education, mirroring resume/cv-en.html. Entries are sorted
-// by `start`, so moving a role up or down the page is a date change and
-// nothing else. Dates are 'YYYY-MM' (or 'YYYY'); a null `end` means "present".
+// Work history and education, mirroring resume/cv-en.html. Roles still held
+// (null `end`) sort above finished ones, newest start first within each group,
+// so moving an entry is a date change and nothing else. Dates are 'YYYY-MM'
+// (or 'YYYY').
 // Months stay numeric so periods read the same in all five site languages;
 // titles and descriptions are translated.
 
@@ -27,6 +28,7 @@ type Entry = {
 };
 
 const ENTRIES: Entry[] = [
+  { id: 'freelance', org: 'Freelance | Self-Employed', location: 'Paris, France · Remote', start: '2023-11', end: null, kind: 'work' },
   { id: 'sopra', org: 'Sopra Steria', location: 'Toulouse, France', start: '2026-08', end: null, kind: 'work' },
   { id: 'khome', org: 'KHOME', location: 'Paris, France', start: '2026-01', end: '2026-07', kind: 'work' },
   { id: 'havas', org: 'Havas Group', location: 'Paris, France', start: '2025-02', end: '2025-11', kind: 'work' },
@@ -58,10 +60,13 @@ const COPY: Record<Lang, Copy> = {
       havas: 'AI & Automation Engineer',
       allianz: 'Data, Automation & Artificial Intelligence',
       decode: 'No Code, Automation & AI',
+      freelance: 'Generative AI Engineer',
       sopra: 'AI Engineer',
       parisCite: 'MSc Machine Learning for Data Science',
     },
     descriptions: {
+      freelance:
+        'Generative AI systems delivered for my own clients: AI agents, multi-agent workflows and RAG pipelines over business documents, business automation with n8n, Make, Zapier and Power Automate, and SaaS products and AI-powered websites on React, Next.js, FastAPI and PostgreSQL.',
       khome:
         'RAG pipelines over property and regulatory documents, plus LLM and retrieval features inside digital products — structured prompting, function calling and agent orchestration with LangGraph and CrewAI.',
       havas:
@@ -82,10 +87,13 @@ const COPY: Record<Lang, Copy> = {
       havas: 'Ingénieur IA & Automatisation',
       allianz: 'Data, Automatisation et Intelligence Artificielle',
       decode: 'No Code, Automatisation & IA',
+      freelance: 'Ingénieur en IA générative',
       sopra: 'Ingénieur Intelligence Artificielle',
       parisCite: 'Master Machine Learning pour la Science des Données',
     },
     descriptions: {
+      freelance:
+        "Des systèmes d'IA générative livrés pour mes propres clients : agents IA, workflows multi-agents et pipelines RAG sur des documents métier, automatisation avec n8n, Make, Zapier et Power Automate, et des produits SaaS et sites web propulsés par IA sur React, Next.js, FastAPI et PostgreSQL.",
       khome:
         "Pipelines RAG sur des documents immobiliers et réglementaires, et intégration de capacités LLM et de recherche dans des produits digitaux — prompting structuré, function calling et orchestration d'agents avec LangGraph et CrewAI.",
       havas:
@@ -106,10 +114,13 @@ const COPY: Record<Lang, Copy> = {
       havas: 'Ingeniero de IA y Automatización',
       allianz: 'Datos, Automatización e Inteligencia Artificial',
       decode: 'No Code, Automatización e IA',
+      freelance: 'Ingeniero de IA generativa',
       sopra: 'Ingeniero de Inteligencia Artificial',
       parisCite: 'Máster en Machine Learning para Ciencia de Datos',
     },
     descriptions: {
+      freelance:
+        'Sistemas de IA generativa entregados para mis propios clientes: agentes de IA, flujos multiagente y pipelines RAG sobre documentos de negocio, automatización con n8n, Make, Zapier y Power Automate, y productos SaaS y webs potenciadas con IA sobre React, Next.js, FastAPI y PostgreSQL.',
       khome:
         'Pipelines RAG sobre documentos inmobiliarios y regulatorios, además de funciones de LLM y recuperación dentro de productos digitales: prompting estructurado, function calling y orquestación de agentes con LangGraph y CrewAI.',
       havas:
@@ -130,10 +141,13 @@ const COPY: Record<Lang, Copy> = {
       havas: 'Ingegnere IA e Automazione',
       allianz: 'Dati, Automazione e Intelligenza Artificiale',
       decode: 'No Code, Automazione e IA',
+      freelance: 'Ingegnere di IA generativa',
       sopra: 'Ingegnere Intelligenza Artificiale',
       parisCite: 'Laurea magistrale in Machine Learning per la Data Science',
     },
     descriptions: {
+      freelance:
+        'Sistemi di IA generativa consegnati per i miei clienti: agenti IA, flussi multi-agente e pipeline RAG su documenti aziendali, automazione con n8n, Make, Zapier e Power Automate, e prodotti SaaS e siti web potenziati dall’IA su React, Next.js, FastAPI e PostgreSQL.',
       khome:
         'Pipeline RAG su documenti immobiliari e normativi, più funzionalità LLM e di retrieval dentro prodotti digitali: prompting strutturato, function calling e orchestrazione di agenti con LangGraph e CrewAI.',
       havas:
@@ -154,10 +168,13 @@ const COPY: Record<Lang, Copy> = {
       havas: 'KI- & Automatisierungs-Ingenieur',
       allianz: 'Daten, Automatisierung und Künstliche Intelligenz',
       decode: 'No Code, Automatisierung & KI',
+      freelance: 'Ingenieur für generative KI',
       sopra: 'KI-Ingenieur',
       parisCite: 'M.Sc. Machine Learning für Data Science',
     },
     descriptions: {
+      freelance:
+        'Generative KI-Systeme für eigene Kunden geliefert: KI-Agenten, Multi-Agenten-Workflows und RAG-Pipelines über Geschäftsdokumente, Automatisierung mit n8n, Make, Zapier und Power Automate sowie SaaS-Produkte und KI-gestützte Websites auf React, Next.js, FastAPI und PostgreSQL.',
       khome:
         'RAG-Pipelines über Immobilien- und Regulierungsdokumente, dazu LLM- und Retrieval-Funktionen in digitalen Produkten — strukturiertes Prompting, Function Calling und Agenten-Orchestrierung mit LangGraph und CrewAI.',
       havas:
@@ -176,7 +193,10 @@ const COPY: Record<Lang, Copy> = {
 export function getExperience(lang: Lang): ExperienceEntry[] {
   const copy = COPY[lang];
   return [...ENTRIES]
-    .sort((a, b) => sortKey(b.start).localeCompare(sortKey(a.start)))
+    .sort((a, b) => {
+      if (!a.end !== !b.end) return a.end ? 1 : -1;
+      return sortKey(b.start).localeCompare(sortKey(a.start));
+    })
     .map(({ start, end, ...entry }) => ({
       ...entry,
       period: `${formatPart(start)} – ${end ? formatPart(end) : copy.present}`,

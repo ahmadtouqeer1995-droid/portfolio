@@ -8,7 +8,7 @@
 <style>
   /* A4 print sheet. Open in a browser and use Print → Save as PDF.
      Keep "Background graphics" ON so the rules under headings render. */
-  @page { size: A4; margin: 14mm 15mm; }
+  @page { size: A4; margin: 11mm 13mm; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
@@ -16,12 +16,12 @@
   body {
     font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
     color: #15171a;
-    font-size: 10.2pt;
-    line-height: 1.42;
+    font-size: 9.7pt;
+    line-height: 1.34;
   }
 
   .sheet {
-    width: 210mm; min-height: 297mm; margin: 0 auto; padding: 14mm 15mm;
+    width: 210mm; min-height: 297mm; margin: 0 auto; padding: 11mm 13mm;
     background: #fff;
   }
 
@@ -43,15 +43,15 @@
 
   /* ---- Section headings ---- */
   h2 {
-    font-size: 11.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
-    margin-top: 5mm; padding-bottom: 1mm; border-bottom: 1.1pt solid #15171a;
+    font-size: 10.8pt; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+    margin-top: 3.6mm; padding-bottom: .8mm; border-bottom: 1.1pt solid #15171a;
   }
 
   /* ---- Summary ---- */
-  .summary { margin-top: 2.5mm; text-align: justify; }
+  .summary { margin-top: 2mm; text-align: justify; }
 
   /* ---- Entries ---- */
-  .entry { margin-top: 3.6mm; page-break-inside: avoid; break-inside: avoid; }
+  .entry { margin-top: 2.8mm; page-break-inside: avoid; break-inside: avoid; }
   .entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6mm; }
   .entry-title { font-weight: 700; }
   .entry-sub { display: flex; justify-content: space-between; align-items: baseline; gap: 6mm; }
@@ -170,11 +170,25 @@
 
 <script>
   /* ------------------------------------------------------------------
-     Job order is driven entirely by `start`. To move a role up or down
-     the page, change its start/end — nothing else. Both are "YYYY-MM"
-     (or "YYYY"); `end: null` means "Present".
+     Job order is driven entirely by the dates. Roles still held
+     (`end: null`) sort above finished ones; inside each group the most
+     recent start comes first. To move a role, change its start/end —
+     nothing else. Both are "YYYY-MM" (or "YYYY").
      ------------------------------------------------------------------ */
   const EXPERIENCE = [
+    {
+      title: 'Generative AI Engineer',
+      org: 'Freelance | Self-Employed',
+      location: 'Paris, France · Remote',
+      start: '2023-11',
+      end: null,
+      bullets: [
+        'Design and ship generative AI systems for clients: AI agents, multi-agent workflows and RAG pipelines over business documents.',
+        'Build business automation with <b>n8n, Make, Zapier and Power Automate</b>, plus custom REST, webhook and OAuth integrations where off-the-shelf connectors fall short.',
+        'Deliver SaaS products and AI-powered websites with React, Next.js, FastAPI, Node.js and PostgreSQL, deployed on Azure and Vercel.',
+        'Map the process and size the time saved before building; prototype, evaluate on real cases, then integrate with the systems already in place.',
+      ],
+    },
     {
       title: 'AI Engineer',
       org: 'Sopra Steria',
@@ -277,7 +291,11 @@
   }
 
   function render(id, items) {
-    const sorted = [...items].sort((a, b) => sortKey(b.start).localeCompare(sortKey(a.start)));
+    const sorted = [...items].sort((a, b) => {
+      // Roles still held float to the top, newest start first within each group.
+      if (!a.end !== !b.end) return a.end ? 1 : -1;
+      return sortKey(b.start).localeCompare(sortKey(a.start));
+    });
     document.getElementById(id).innerHTML = sorted.map(renderEntry).join('');
   }
 
