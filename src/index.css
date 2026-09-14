@@ -169,12 +169,5 @@ body {
   }
 }
 
-/* Skills orbit is designed for ~1220px — scale it down to fit the viewport */
-.orbit-scale {
-  transform-origin: center center;
-}
-@media (max-width: 1219px) {
-  .orbit-scale {
-    transform: scale(calc(100vw / 1220));
-  }
-}
+/* The skills orbit is scaled in Skills.tsx (useOrbitScale) — it has to fit a
+   200px gutter top and bottom, which CSS alone can't express. */

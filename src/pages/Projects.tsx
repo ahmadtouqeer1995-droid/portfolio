@@ -41,8 +41,8 @@ function Projects() {
   const projects = useProjects();
 
   usePageMeta(
-    'Shopify Store Case Studies — Ahmad Touqeer',
-    '10 real Shopify builds — skincare, audio, jewelry, fashion and more — each with a video walkthrough, screenshots, challenges, solutions and results.'
+    'Projects & Case Studies — Ahmad Touqeer',
+    '10 shipped e-commerce builds — skincare, audio, jewelry, fashion and more — each with a video walkthrough, screenshots, challenges, solutions and results.'
   );
 
   return (
@@ -67,6 +67,10 @@ function Projects() {
         <h1 className='mt-[60px] text-4xl font-bold tracking-tight text-neutral-900 sm:mt-[100px] sm:text-5xl md:text-6xl'>
           <span className='italic font-light'>{t('projectsTitle')}</span>
         </h1>
+
+        {/* Frames the e-commerce case studies as the delivery record behind
+            the AI work, now that the site leads with AI engineering. */}
+        <p className='mt-6 max-w-[680px] leading-relaxed text-neutral-600'>{t('projectsIntro')}</p>
 
         {/* Scrollable grid — picture 1 of every store, same size, uncropped */}
         <div className='mt-10 grid grid-cols-1 gap-6 md:grid-cols-2'>

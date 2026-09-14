@@ -103,10 +103,11 @@ function OrbitRing({ radius, duration, reverse = false, items }: OrbitRingConfig
 export function MultiOrbitSemiCircle({ rings }: { rings: OrbitRingConfig[] }) {
   return (
     <div className='pointer-events-none absolute inset-x-0 bottom-0 h-full overflow-hidden'>
-      {/* Blurred radial glow behind the orbits, light-theme version */}
+      {/* Blurred radial glow behind the orbits, light-theme version. Sized off
+          the orbit box (not the viewport) so it scales with the orbit. */}
       <div
         aria-hidden
-        className='absolute top-1/2 left-1/2 h-[80vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl'
+        className='absolute top-1/2 left-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl'
         style={{
           background:
             'radial-gradient(circle at center, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.04) 40%, transparent 70%)',

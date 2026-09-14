@@ -1,6 +1,9 @@
 import { useLang, type Lang } from '@/i18n';
 
-// 10 Shopify store projects. All media lives in /public/projects:
+// 10 e-commerce builds from the freelance web-development years — kept as
+// delivery proof now that the site leads with AI engineering. AI case studies
+// live alongside these once their media is ready.
+// All media lives in /public/projects:
 //   <id>-1.png … <id>-N.png  (screenshots — picture 1 is the card preview)
 //   <id>-video.mp4           (1920x1080 store walkthrough)
 // All copy is localized: titles, dates, industries and every case-study
@@ -68,8 +71,8 @@ type Copy = {
 
 const COPY: Record<Lang, Copy> = {
   en: {
-    category: 'SHOPIFY STORE',
-    services: 'SHOPIFY DEVELOPMENT',
+    category: 'E-COMMERCE',
+    services: 'E-COMMERCE DEVELOPMENT',
     monthsShort: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
     monthsFull: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     formatPublished: (d, m, y) => `${d} ${m} ${y}`,
@@ -107,8 +110,8 @@ const COPY: Record<Lang, Copy> = {
     ],
   },
   fr: {
-    category: 'BOUTIQUE SHOPIFY',
-    services: 'DÉVELOPPEMENT SHOPIFY',
+    category: 'E-COMMERCE',
+    services: 'DÉVELOPPEMENT E-COMMERCE',
     monthsShort: ['JANV', 'FÉVR', 'MARS', 'AVR', 'MAI', 'JUIN', 'JUIL', 'AOÛT', 'SEPT', 'OCT', 'NOV', 'DÉC'],
     monthsFull: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
     formatPublished: (d, m, y) => `${d} ${m} ${y}`,
@@ -146,8 +149,8 @@ const COPY: Record<Lang, Copy> = {
     ],
   },
   es: {
-    category: 'TIENDA SHOPIFY',
-    services: 'DESARROLLO SHOPIFY',
+    category: 'E-COMMERCE',
+    services: 'DESARROLLO E-COMMERCE',
     monthsShort: ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
     monthsFull: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
     formatPublished: (d, m, y) => `${d} de ${m} de ${y}`,
@@ -185,8 +188,8 @@ const COPY: Record<Lang, Copy> = {
     ],
   },
   it: {
-    category: 'NEGOZIO SHOPIFY',
-    services: 'SVILUPPO SHOPIFY',
+    category: 'E-COMMERCE',
+    services: 'SVILUPPO E-COMMERCE',
     monthsShort: ['GEN', 'FEB', 'MAR', 'APR', 'MAG', 'GIU', 'LUG', 'AGO', 'SET', 'OTT', 'NOV', 'DIC'],
     monthsFull: ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'],
     formatPublished: (d, m, y) => `${d} ${m} ${y}`,
@@ -224,8 +227,8 @@ const COPY: Record<Lang, Copy> = {
     ],
   },
   de: {
-    category: 'SHOPIFY-SHOP',
-    services: 'SHOPIFY-ENTWICKLUNG',
+    category: 'E-COMMERCE',
+    services: 'E-COMMERCE-ENTWICKLUNG',
     monthsShort: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'],
     monthsFull: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
     formatPublished: (d, m, y) => `${d}. ${m} ${y}`,

@@ -27,8 +27,8 @@ function Home() {
   const pendingNav = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   usePageMeta(
-    'Shopify Developer in Paris — Ahmad Touqeer',
-    'Freelance Shopify developer in Paris — 100+ stores built, 50+ themes sold 1,000+ times. Storefronts that convert, plus AI agents and automation.'
+    'AI Engineer — Agents, Automations & SaaS | Ahmad Touqeer',
+    'Freelance AI engineer in Paris. AI agents and agentic workflows with LangChain and LangGraph, automation with n8n, Make and Zapier, SaaS products, CRM automation and AI-powered websites.'
   );
 
   // Navigate AFTER the tab animation (0.7s) has played — navigating right
@@ -50,7 +50,10 @@ function Home() {
   return (
     <>
       {/* Page h1 for SEO — visually the page is the watermark + robot */}
-      <h1 className='sr-only'>Ahmad Touqeer — Shopify Developer in Paris, Full Stack & AI Automation</h1>
+      <h1 className='sr-only'>
+        Ahmad Touqeer — AI Engineer in Paris: agents, automation workflows, SaaS and AI-powered
+        websites
+      </h1>
 
       {/* Name watermark — sits under the fluid canvas so the fluid paints over it */}
       <div className='pointer-events-none fixed bottom-0 left-1/2 -translate-x-1/2 translate-y-[28%] select-none'>

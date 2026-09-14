@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Mail } from 'lucide-react';
+import { ArrowLeft, FileDown, Mail } from 'lucide-react';
 import QRCode from 'react-qr-code';
 
 import FluidCursor from '@/components/FluidCursor';
@@ -11,8 +11,8 @@ const WHATSAPP_URL = 'https://wa.me/33651964771';
 function Contact() {
   const { t } = useLang();
   usePageMeta(
-    'Hire a Shopify Developer in Paris — Ahmad Touqeer',
-    'Email or WhatsApp me about your store, web app or automation project. Based in Paris, working in English and French.'
+    'Hire an AI Engineer in Paris — Ahmad Touqeer',
+    'Email or WhatsApp me about your AI agent, automation, SaaS or website project. Based in Paris, working in English and French.'
   );
 
   return (
@@ -56,13 +56,24 @@ function Contact() {
           </h1>
           <p className='mt-8 leading-relaxed text-neutral-600'>{t('contactText')}</p>
 
-          <div className='mt-8'>
+          <div className='mt-8 flex flex-wrap items-center gap-3'>
             <a
-              href='mailto:ahmadtouqeer2011@gmail.com'
+              href='mailto:ahmadtouqeer1995@gmail.com'
               className='inline-flex max-w-full items-center gap-2 rounded-full bg-neutral-900 px-4 py-3 text-xs font-semibold break-all text-white transition-colors hover:bg-neutral-700 sm:px-6 sm:text-sm'
             >
               <Mail className='h-4 w-4 shrink-0' />
-              ahmadtouqeer2011@gmail.com
+              ahmadtouqeer1995@gmail.com
+            </a>
+
+            {/* CV lives in /public so it is served straight from the deploy */}
+            <a
+              href={`${import.meta.env.BASE_URL}Ahmad-Touqeer-CV.pdf`}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/40 px-4 py-3 text-xs font-medium text-neutral-800 shadow-sm backdrop-blur-md transition-colors hover:bg-white/70 sm:px-6 sm:text-sm'
+            >
+              <FileDown className='h-4 w-4 shrink-0' />
+              {t('downloadCv')}
             </a>
           </div>
         </section>

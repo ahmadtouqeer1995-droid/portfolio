@@ -1,30 +1,32 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Bot, Mail, Monitor, ShoppingBag, Sparkles } from 'lucide-react';
+import { ArrowLeft, Bot, Boxes, GraduationCap, Library, Mail, Workflow } from 'lucide-react';
 
 import FluidCursor from '@/components/FluidCursor';
+import { useExperience } from '@/data/experience';
 import { useLang, usePageMeta, type StringKey } from '@/i18n';
 
 // About page ("Me" tab) — glass on white, scrollable, fully translated.
 
-const PILLARS: { icon: typeof Monitor; titleKey: StringKey; textKey: StringKey }[] = [
-  { icon: ShoppingBag, titleKey: 'meShopTitle', textKey: 'meShopText' },
-  { icon: Monitor, titleKey: 'meWebTitle', textKey: 'meWebText' },
-  { icon: Bot, titleKey: 'meAiTitle', textKey: 'meAiText' },
-  { icon: Sparkles, titleKey: 'meContentTitle', textKey: 'meContentText' },
+const PILLARS: { icon: typeof Bot; titleKey: StringKey; textKey: StringKey }[] = [
+  { icon: Bot, titleKey: 'meShopTitle', textKey: 'meShopText' },
+  { icon: Library, titleKey: 'meWebTitle', textKey: 'meWebText' },
+  { icon: Workflow, titleKey: 'meAiTitle', textKey: 'meAiText' },
+  { icon: Boxes, titleKey: 'meContentTitle', textKey: 'meContentText' },
 ];
 
 const STATS: { value: string; labelKey: StringKey }[] = [
-  { value: '8+', labelKey: 'meStatsYears' },
+  { value: '5+', labelKey: 'meStatsAI' },
+  { value: '4', labelKey: 'meStatsClients' },
   { value: '100+', labelKey: 'meStatsProjects' },
   { value: '1,000+', labelKey: 'meStatsThemes' },
-  { value: '2+', labelKey: 'meStatsAI' },
 ];
 
 function Me() {
   const { t } = useLang();
+  const experience = useExperience();
   usePageMeta(
-    'About — Shopify Developer in Paris | Ahmad Touqeer',
-    '8 years freelance, 100+ stores, 50+ themes sold 1,000+ times. Who I am, what I build, and the clients I work best with.'
+    'About — AI Engineer in Paris | Ahmad Touqeer',
+    'Agentic AI, RAG and automation delivered for Allianz France, Havas Group, KHOME and Sopra Steria. MSc Machine Learning, Université Paris Cité.'
   );
 
   return (
@@ -122,6 +124,43 @@ function Me() {
               );
             })}
           </div>
+        </section>
+
+        {/* Work history — roles and education from the CV, newest first */}
+        <section className='mt-6 rounded-[2rem] border border-white/60 bg-white/40 p-8 shadow-sm backdrop-blur-md md:p-12'>
+          <h2 className='text-3xl font-bold tracking-tight text-neutral-900'>
+            {t('meTimelineTitle')}
+          </h2>
+
+          <ol className='mt-8 space-y-4'>
+            {experience.map((entry) => (
+              <li
+                key={entry.id}
+                className='rounded-3xl border border-white/60 bg-white/50 p-6 shadow-sm'
+              >
+                <div className='flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6'>
+                  <h3 className='text-lg font-semibold text-neutral-900'>
+                    {entry.title}
+                    <span className='font-normal text-neutral-500'> · {entry.org}</span>
+                  </h3>
+                  <p className='shrink-0 font-mono text-xs tracking-widest whitespace-nowrap text-neutral-500'>
+                    {entry.period}
+                  </p>
+                </div>
+
+                <p className='mt-1 flex items-center gap-1.5 font-mono text-xs tracking-widest text-neutral-500 uppercase'>
+                  {entry.kind === 'education' ? (
+                    <GraduationCap className='h-3.5 w-3.5' />
+                  ) : (
+                    <Boxes className='h-3.5 w-3.5' />
+                  )}
+                  {entry.location}
+                </p>
+
+                <p className='mt-3 text-sm leading-relaxed text-neutral-600'>{entry.description}</p>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* Journey */}

@@ -58,10 +58,10 @@ function ProjectDetail() {
 
   usePageMeta(
     project
-      ? `${project.title} — Shopify Store Case Study | Ahmad Touqeer`
-      : 'Shopify Store Case Studies — Ahmad Touqeer',
+      ? `${project.title} — E-commerce Case Study | Ahmad Touqeer`
+      : 'Projects & Case Studies — Ahmad Touqeer',
     project
-      ? `${project.title}, a ${project.industry.toLowerCase()} store on Shopify — the challenge, the build and the results, with video and screenshots.`
+      ? `${project.title}, an e-commerce build in ${project.industry.toLowerCase()} — the challenge, the build and the results, with video and screenshots.`
       : undefined
   );
 
