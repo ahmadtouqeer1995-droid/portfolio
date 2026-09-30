@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import FluidCursor from '@/components/FluidCursor';
 import { FramerCarousel } from '@/components/ui/framer-carousel';
 import { useLang, usePageMeta } from '@/i18n';
-import { useProjects } from '@/data/projects';
+import { categoryPath, useProjects } from '@/data/projects';
 
 // Case-study page, glass on white, one scrollable page:
 // title → store video (16:9, kept as-is) → picture carousel with arrows
@@ -56,12 +56,16 @@ function ProjectDetail() {
   const projects = useProjects();
   const project = projects.find((p) => p.id === id);
 
+  // AI case studies carry a stack table; e-commerce builds don't
+  const isAI = Boolean(project?.stack);
   usePageMeta(
     project
-      ? `${project.title} — E-commerce Case Study | Ahmad Touqeer`
+      ? `${project.title} — ${isAI ? 'AI' : 'E-commerce'} Case Study | Ahmad Touqeer`
       : 'Projects & Case Studies — Ahmad Touqeer',
     project
-      ? `${project.title}, an e-commerce build in ${project.industry.toLowerCase()} — the challenge, the build and the results, with video and screenshots.`
+      ? isAI
+        ? `${project.title} (${project.industry}) — how it works, the stack and the measured results, with screenshots.`
+        : `${project.title}, an e-commerce build in ${project.industry.toLowerCase()} — the challenge, the build and the results, with video and screenshots.`
       : undefined
   );
 
@@ -76,6 +80,11 @@ function ProjectDetail() {
     );
   }
 
+  // Back to the category list — or to the tiles when the project is its
+  // category's only one (the tile opened it directly)
+  const tilePath = categoryPath(project.kind, projects);
+  const backPath = tilePath === `/projects/${project.id}` ? '/projects' : tilePath;
+
   const carouselItems = project.images.map((url, i) => ({
     id: i + 1,
     url,
@@ -89,7 +98,7 @@ function ProjectDetail() {
 
       {/* Back to projects */}
       <Link
-        to='/projects'
+        to={backPath}
         className='fixed top-6 left-6 z-50 flex items-center gap-2 rounded-full border border-white/50 bg-white/40 px-4 py-2 text-sm font-medium text-neutral-800 shadow-sm backdrop-blur-md transition-colors hover:bg-white/70'
       >
         <ArrowLeft className='h-4 w-4' />
@@ -106,25 +115,30 @@ function ProjectDetail() {
         {/* Pictures first — arrows left/right. Frame matches the pictures'
             native ~1122x1218 pixels so they show full size, uncropped. */}
         <section className='rounded-[2rem] border border-white/60 bg-white/40 p-4 shadow-sm backdrop-blur-md md:p-6'>
-          <div className='mx-auto w-full max-w-[1122px] aspect-[1122/1218]'>
+          <div
+            className='mx-auto w-full max-w-[1122px]'
+            style={{ aspectRatio: project.aspect ?? '1122/1218' }}
+          >
             <FramerCarousel key={project.id} items={carouselItems} />
           </div>
         </section>
 
         {/* Video second — its own grid, exact 16:9 (1920x1080), playing
             immediately (muted autoplay), so no black bars ever show. */}
-        <section className='mt-6 rounded-[2rem] border border-white/60 bg-white/40 p-4 shadow-sm backdrop-blur-md md:p-6'>
-          <video
-            src={project.video}
-            controls
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload='auto'
-            className='aspect-video w-full rounded-2xl'
-          />
-        </section>
+        {project.video && (
+          <section className='mt-6 rounded-[2rem] border border-white/60 bg-white/40 p-4 shadow-sm backdrop-blur-md md:p-6'>
+            <video
+              src={project.video}
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload='auto'
+              className='aspect-video w-full rounded-2xl'
+            />
+          </section>
+        )}
 
         {/* Project Description + metadata */}
         <Section id='description' title={t('description')} paragraphs={project.description}>
@@ -138,6 +152,23 @@ function ProjectDetail() {
 
         <Section id='challenges' title={t('challenges')} paragraphs={project.challenges} />
         <Section id='solutions' title={t('solutions')} paragraphs={project.solutions} />
+
+        {/* Stack — one row per pipeline layer (AI case studies only) */}
+        {project.stack && (
+          <Section id='stack' title={t('stack')} paragraphs={[]}>
+            <dl className='divide-y divide-neutral-200/70'>
+              {project.stack.map((row) => (
+                <div key={row.layer} className='grid gap-1 py-4 first:pt-0 sm:grid-cols-[180px_1fr] sm:gap-6'>
+                  <dt className='font-mono text-xs tracking-widest text-neutral-400 uppercase sm:pt-0.5'>
+                    {row.layer}
+                  </dt>
+                  <dd className='leading-relaxed text-neutral-700'>{row.tools}</dd>
+                </div>
+              ))}
+            </dl>
+          </Section>
+        )}
+
         <Section id='results' title={t('results')} paragraphs={project.results} />
       </div>
       </div>

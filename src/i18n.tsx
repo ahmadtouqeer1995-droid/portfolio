@@ -21,6 +21,24 @@ const STRINGS = {
     projectsTitle: 'Projects',
     projectsIntro:
       'Ten e-commerce builds from my freelance web development years. Every one shipped, each with a video walkthrough, the constraints I worked under and what came out of it.',
+    projectsIntroVoice:
+      'Voice agents that listen, understand and answer out loud: speech recognition, intent detection, retrieval and speech synthesis, running on a local AI stack.',
+    tabVoice: 'Voice Agents',
+    tabLead: 'Lead Generation',
+    tabCrm: 'CRM Automation',
+    tabOutreach: 'LinkedIn Outreach',
+    tabAds: 'AI Video Ads',
+    projectsIntroAds:
+      'Pipelines where Claude directs image and video models to turn one product photo into a finished ad, with approval checkpoints before any credits are spent.',
+    projectsIntroCrm:
+      'Workflows that score, route and assign every lead, draft the follow-up and hand sales a clean CRM record.',
+    projectsIntroOutreach:
+      'Outreach systems that find the right people, research them, write personal LinkedIn and email messages and keep the conversation going.',
+    projectsIntroLead:
+      'Automations that capture every inbound lead, score it with an LLM, write it to the CRM and alert sales on the hot ones within seconds.',
+    tabWeb: 'Shopify Stores & Websites',
+    projectOne: 'project',
+    projectMany: 'projects',
     backToProjects: 'Projects',
     notFound: 'Project not found.',
     backToProjectsLink: 'Back to projects',
@@ -60,6 +78,7 @@ const STRINGS = {
     services: 'Services',
     client: 'Client',
     industry: 'Industry',
+    stack: 'Stack',
   },
   fr: {
     home: 'Accueil',
@@ -68,6 +87,24 @@ const STRINGS = {
     projectsTitle: 'Projets',
     projectsIntro:
       "Dix projets e-commerce issus de mes années de développement web en freelance. Tous livrés, chacun avec une vidéo de présentation, les contraintes du projet et ce qui en est sorti.",
+    projectsIntroVoice:
+      'Des agents vocaux qui écoutent, comprennent et répondent à voix haute : reconnaissance vocale, détection d’intention, recherche et synthèse vocale, sur une stack IA locale.',
+    tabVoice: 'Agents vocaux',
+    tabLead: 'Génération de leads',
+    tabCrm: 'Automatisation CRM',
+    tabOutreach: 'Prospection LinkedIn',
+    tabAds: 'Publicités vidéo IA',
+    projectsIntroAds:
+      'Des pipelines où Claude pilote des modèles d\'image et de vidéo pour transformer une photo produit en publicité finie, avec des validations avant toute dépense de crédits.',
+    projectsIntroCrm:
+      'Des workflows qui notent, routent et attribuent chaque lead, rédigent la relance et livrent aux commerciaux une fiche CRM propre.',
+    projectsIntroOutreach:
+      'Des systèmes de prospection qui trouvent les bonnes personnes, se renseignent sur elles, rédigent des messages LinkedIn et e-mail personnels et entretiennent la conversation.',
+    projectsIntroLead:
+      'Des automatisations qui captent chaque lead entrant, le notent avec un LLM, l’enregistrent dans le CRM et alertent les commerciaux sur les leads chauds en quelques secondes.',
+    tabWeb: 'Boutiques Shopify & sites web',
+    projectOne: 'projet',
+    projectMany: 'projets',
     backToProjects: 'Projets',
     notFound: 'Projet introuvable.',
     backToProjectsLink: 'Retour aux projets',
@@ -107,6 +144,7 @@ const STRINGS = {
     services: 'Services',
     client: 'Client',
     industry: 'Secteur',
+    stack: 'Stack',
   },
   es: {
     home: 'Inicio',
@@ -115,6 +153,24 @@ const STRINGS = {
     projectsTitle: 'Proyectos',
     projectsIntro:
       'Diez proyectos de e-commerce de mis años de desarrollo web freelance. Todos entregados, cada uno con un vídeo de recorrido, las restricciones del proyecto y el resultado.',
+    projectsIntroVoice:
+      'Agentes de voz que escuchan, entienden y responden en voz alta: reconocimiento de voz, detección de intención, recuperación y síntesis de voz, sobre una stack de IA local.',
+    tabVoice: 'Agentes de voz',
+    tabLead: 'Generación de leads',
+    tabCrm: 'Automatización CRM',
+    tabOutreach: 'Prospección en LinkedIn',
+    tabAds: 'Anuncios en vídeo con IA',
+    projectsIntroAds:
+      'Pipelines en los que Claude dirige modelos de imagen y vídeo para convertir una foto de producto en un anuncio terminado, con aprobaciones antes de gastar créditos.',
+    projectsIntroCrm:
+      'Workflows que puntúan, enrutan y asignan cada lead, redactan el seguimiento y entregan a ventas un registro limpio en el CRM.',
+    projectsIntroOutreach:
+      'Sistemas de prospección que encuentran a las personas adecuadas, las investigan, escriben mensajes personales por LinkedIn y correo y mantienen viva la conversación.',
+    projectsIntroLead:
+      'Automatizaciones que captan cada lead entrante, lo puntúan con un LLM, lo guardan en el CRM y avisan a ventas de los leads calientes en segundos.',
+    tabWeb: 'Tiendas Shopify y sitios web',
+    projectOne: 'proyecto',
+    projectMany: 'proyectos',
     backToProjects: 'Proyectos',
     notFound: 'Proyecto no encontrado.',
     backToProjectsLink: 'Volver a proyectos',
@@ -154,6 +210,7 @@ const STRINGS = {
     services: 'Servicios',
     client: 'Cliente',
     industry: 'Industria',
+    stack: 'Stack',
   },
   it: {
     home: 'Home',
@@ -162,6 +219,24 @@ const STRINGS = {
     projectsTitle: 'Progetti',
     projectsIntro:
       'Dieci progetti e-commerce dai miei anni di sviluppo web freelance. Tutti consegnati, ognuno con un video di presentazione, i vincoli del progetto e il risultato.',
+    projectsIntroVoice:
+      'Agenti vocali che ascoltano, capiscono e rispondono ad alta voce: riconoscimento vocale, rilevamento dell’intento, recupero e sintesi vocale, su uno stack IA locale.',
+    tabVoice: 'Agenti vocali',
+    tabLead: 'Lead generation',
+    tabCrm: 'Automazione CRM',
+    tabOutreach: 'Outreach su LinkedIn',
+    tabAds: 'Video pubblicitari IA',
+    projectsIntroAds:
+      'Pipeline in cui Claude guida modelli di immagini e video per trasformare una foto prodotto in uno spot finito, con approvazioni prima di spendere crediti.',
+    projectsIntroCrm:
+      'Workflow che valutano, instradano e assegnano ogni lead, scrivono il follow-up e consegnano alle vendite un record CRM pulito.',
+    projectsIntroOutreach:
+      'Sistemi di outreach che trovano le persone giuste, si informano su di loro, scrivono messaggi personali su LinkedIn e via e-mail e portano avanti la conversazione.',
+    projectsIntroLead:
+      'Automazioni che acquisiscono ogni lead in entrata, lo valutano con un LLM, lo salvano nel CRM e avvisano le vendite dei lead caldi in pochi secondi.',
+    tabWeb: 'Negozi Shopify e siti web',
+    projectOne: 'progetto',
+    projectMany: 'progetti',
     backToProjects: 'Progetti',
     notFound: 'Progetto non trovato.',
     backToProjectsLink: 'Torna ai progetti',
@@ -201,6 +276,7 @@ const STRINGS = {
     services: 'Servizi',
     client: 'Cliente',
     industry: 'Settore',
+    stack: 'Stack',
   },
   de: {
     home: 'Startseite',
@@ -209,6 +285,24 @@ const STRINGS = {
     projectsTitle: 'Projekte',
     projectsIntro:
       'Zehn E-Commerce-Projekte aus meinen Jahren als freiberuflicher Webentwickler. Alle ausgeliefert, jedes mit Video-Walkthrough, den Rahmenbedingungen und dem Ergebnis.',
+    projectsIntroVoice:
+      'Sprachagenten, die zuhören, verstehen und laut antworten: Spracherkennung, Intent-Erkennung, Retrieval und Sprachsynthese auf einem lokalen KI-Stack.',
+    tabVoice: 'Sprachagenten',
+    tabLead: 'Leadgenerierung',
+    tabCrm: 'CRM-Automatisierung',
+    tabOutreach: 'LinkedIn-Outreach',
+    tabAds: 'KI-Videoanzeigen',
+    projectsIntroAds:
+      'Pipelines, in denen Claude Bild- und Videomodelle steuert, um aus einem Produktfoto eine fertige Anzeige zu machen – mit Freigaben, bevor Credits ausgegeben werden.',
+    projectsIntroCrm:
+      'Workflows, die jeden Lead bewerten, weiterleiten und zuweisen, das Follow-up entwerfen und dem Vertrieb einen sauberen CRM-Datensatz liefern.',
+    projectsIntroOutreach:
+      'Outreach-Systeme, die die richtigen Leute finden, recherchieren, persönliche LinkedIn- und E-Mail-Nachrichten schreiben und das Gespräch am Laufen halten.',
+    projectsIntroLead:
+      'Automatisierungen, die jeden eingehenden Lead erfassen, per LLM bewerten, ins CRM schreiben und den Vertrieb bei heißen Leads innerhalb von Sekunden benachrichtigen.',
+    tabWeb: 'Shopify-Shops & Websites',
+    projectOne: 'Projekt',
+    projectMany: 'Projekte',
     backToProjects: 'Projekte',
     notFound: 'Projekt nicht gefunden.',
     backToProjectsLink: 'Zurück zu den Projekten',
@@ -248,6 +342,7 @@ const STRINGS = {
     services: 'Leistungen',
     client: 'Kunde',
     industry: 'Branche',
+    stack: 'Stack',
   },
 } as const;
 
