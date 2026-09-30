@@ -19,18 +19,25 @@ import { useLang, type Lang } from '@/i18n';
 // equal a category slug — the category route would hide the project page.
 
 /** Which category tile a project lives under. */
-export type ProjectKind = 'voice' | 'lead' | 'crm' | 'outreach' | 'web';
+export type ProjectKind = 'voice' | 'lead' | 'crm' | 'outreach' | 'ads' | 'web';
 
 export const CATEGORIES: {
   kind: ProjectKind;
   slug: string;
-  labelKey: 'tabVoice' | 'tabLead' | 'tabCrm' | 'tabOutreach' | 'tabWeb';
-  introKey: 'projectsIntroVoice' | 'projectsIntroLead' | 'projectsIntroCrm' | 'projectsIntroOutreach' | 'projectsIntro';
+  labelKey: 'tabVoice' | 'tabLead' | 'tabCrm' | 'tabOutreach' | 'tabAds' | 'tabWeb';
+  introKey:
+    | 'projectsIntroVoice'
+    | 'projectsIntroLead'
+    | 'projectsIntroCrm'
+    | 'projectsIntroOutreach'
+    | 'projectsIntroAds'
+    | 'projectsIntro';
 }[] = [
   { kind: 'voice', slug: 'voice-agents', labelKey: 'tabVoice', introKey: 'projectsIntroVoice' },
   { kind: 'lead', slug: 'lead-generation', labelKey: 'tabLead', introKey: 'projectsIntroLead' },
   { kind: 'crm', slug: 'crm-automation', labelKey: 'tabCrm', introKey: 'projectsIntroCrm' },
   { kind: 'outreach', slug: 'linkedin-outreach', labelKey: 'tabOutreach', introKey: 'projectsIntroOutreach' },
+  { kind: 'ads', slug: 'ai-video-ads', labelKey: 'tabAds', introKey: 'projectsIntroAds' },
   { kind: 'web', slug: 'shopify-websites', labelKey: 'tabWeb', introKey: 'projectsIntro' },
 ];
 
@@ -880,6 +887,141 @@ const OUTREACH_COPY: Record<Lang, StudyCopy> = {
   },
 };
 
+// ---- Claude + Higgsfield UGC Ad Pipeline ----
+// Facts from the repo README, skills/README.md and the worked surfboards
+// example. Images: storyboard sheet, generated creator portrait, product
+// reference. The example's two videos are not in the repo.
+const ADS_TOOLS = [
+  'Claude (or Codex) · 7 Agent Skills · orchestrator skill with approval checkpoints and a cost gate',
+  'Product profile · one-page brief with a three-cut shot map · multi-cut script with a phonetic voice prompt',
+  'Higgsfield (MCP) · image models for the creator portrait and the three-panel storyboard',
+  'Seedance on Higgsfield · video with native voice, lip sync and ambient sound in one pass',
+  'Local HTML render · ducked music bed · animated karaoke captions',
+];
+
+const ADS_COPY: Record<Lang, StudyCopy> = {
+  en: {
+    category: 'AI · VIDEO ADS',
+    services: 'CLAUDE · HIGGSFIELD · UGC VIDEO ADS',
+    client: 'Open source',
+    industry: 'DTC brands & e-commerce marketing',
+    layers: ['Orchestration', 'Planning', 'Image generation', 'Video generation', 'Post-production'],
+    description: [
+      'An end-to-end pipeline that turns a single product photo into a finished, creator-led UGC video ad. Claude directs the work through seven reusable skills, and Higgsfield generates the creator, the storyboard and the final video, with voice, lip sync and ambient sound produced in one pass.',
+      'The finished ad comes out captioned and with a music bed, and every step lands in one dated folder, so each ad is self-contained and traceable.',
+    ],
+    challenges: [
+      "One-shot AI video is a gamble: the creator's face drifts between shots, the product changes shape, and every failed attempt burns paid credits.",
+      "Generated voices also stumble on brand names, and a raw AI clip without captions or music doesn't look like a real ad.",
+    ],
+    solutions: [
+      'The work builds up in cheap, approved steps before the one expensive call: a product profile with a clean reference image, a one-page brief with a three-cut shot map (tight hook, macro action, wide recommendation), then a creator portrait generated without the product.',
+      'A three-panel storyboard locks the same creator and the same product across all three framings. That single image is what keeps the final video consistent from beginning to end.',
+      'The script spells brand names phonetically for the voice (for example "Bee" for "B") while the captions keep the real spelling. Seedance then renders the video with native voice, and an enhance step adds a ducked music bed and animated karaoke captions.',
+    ],
+    results: [
+      'The only paid step is the final video, about 67 Higgsfield credits at 720p. A person approves the creator and the storyboard, confirms the cost before the video and checks the audio after, so there are no surprise charges.',
+      'The worked example, an ad for a made-up surfboard brand, produced every artifact in order: product profile, brief, creator portrait, storyboard, script and caption data, plus a base and an enhanced video.',
+    ],
+  },
+  fr: {
+    category: 'IA · PUBLICITÉS VIDÉO',
+    services: 'CLAUDE · HIGGSFIELD · PUBLICITÉS VIDÉO UGC',
+    client: 'Open source',
+    industry: 'Marques DTC & marketing e-commerce',
+    layers: ['Orchestration', 'Planification', "Génération d'images", 'Génération vidéo', 'Post-production'],
+    description: [
+      "Un pipeline de bout en bout qui transforme une seule photo produit en publicité vidéo UGC finie, portée par un créateur. Claude dirige le travail à travers sept skills réutilisables, et Higgsfield génère le créateur, le storyboard et la vidéo finale, avec voix, synchronisation labiale et ambiance sonore produites en une seule passe.",
+      "La publicité sort sous-titrée et avec une musique de fond, et chaque étape est rangée dans un dossier daté : chaque pub est complète et traçable.",
+    ],
+    challenges: [
+      "Une vidéo IA générée d'un coup, c'est un pari : le visage du créateur change d'un plan à l'autre, le produit se déforme, et chaque essai raté consomme des crédits payants.",
+      "Les voix générées butent aussi sur les noms de marque, et un clip IA brut sans sous-titres ni musique ne ressemble pas à une vraie publicité.",
+    ],
+    solutions: [
+      "Le travail avance par petites étapes peu coûteuses et validées avant l'unique appel cher : un profil produit avec une image de référence propre, un brief d'une page avec un découpage en trois plans (accroche serrée, action en macro, recommandation en plan large), puis un portrait du créateur généré sans le produit.",
+      "Un storyboard en trois cases fige le même créateur et le même produit sur les trois cadrages. C'est cette image qui garde la vidéo finale cohérente du début à la fin.",
+      "Le script écrit les noms de marque phonétiquement pour la voix (par exemple « Bee » pour « B »), tandis que les sous-titres gardent la vraie orthographe. Seedance produit ensuite la vidéo avec voix native, et une étape de finition ajoute une musique atténuée sous la voix et des sous-titres animés façon karaoké.",
+    ],
+    results: [
+      "La seule étape payante est la vidéo finale, environ 67 crédits Higgsfield en 720p. Une personne valide le créateur et le storyboard, confirme le coût avant la vidéo et vérifie le son après : aucune dépense surprise.",
+      "L'exemple complet, une publicité pour une marque de surf fictive, a produit chaque livrable dans l'ordre : profil produit, brief, portrait du créateur, storyboard, script et sous-titres, plus une vidéo de base et une version finalisée.",
+    ],
+  },
+  es: {
+    category: 'IA · ANUNCIOS EN VÍDEO',
+    services: 'CLAUDE · HIGGSFIELD · ANUNCIOS UGC EN VÍDEO',
+    client: 'Código abierto',
+    industry: 'Marcas DTC y marketing e-commerce',
+    layers: ['Orquestación', 'Planificación', 'Generación de imágenes', 'Generación de vídeo', 'Posproducción'],
+    description: [
+      'Un pipeline de principio a fin que convierte una sola foto de producto en un anuncio UGC en vídeo terminado, protagonizado por un creador. Claude dirige el trabajo con siete skills reutilizables y Higgsfield genera el creador, el storyboard y el vídeo final, con voz, sincronización labial y sonido ambiente en una sola pasada.',
+      'El anuncio sale subtitulado y con música de fondo, y cada paso queda en una carpeta con fecha, así que cada anuncio está completo y es trazable.',
+    ],
+    challenges: [
+      'Un vídeo de IA generado de una vez es una apuesta: la cara del creador cambia entre planos, el producto se deforma y cada intento fallido gasta créditos de pago.',
+      'Las voces generadas también tropiezan con los nombres de marca, y un clip de IA sin subtítulos ni música no parece un anuncio de verdad.',
+    ],
+    solutions: [
+      'El trabajo avanza en pasos baratos y aprobados antes de la única llamada cara: un perfil de producto con una imagen de referencia limpia, un brief de una página con un plan de tres cortes (gancho cerrado, acción en macro, recomendación en plano abierto) y después un retrato del creador generado sin el producto.',
+      'Un storyboard de tres viñetas fija al mismo creador y el mismo producto en los tres encuadres. Esa imagen es la que mantiene el vídeo final coherente de principio a fin.',
+      'El guion escribe los nombres de marca de forma fonética para la voz (por ejemplo «Bee» para «B») mientras los subtítulos conservan la ortografía real. Luego Seedance genera el vídeo con voz nativa y un paso de acabado añade música atenuada bajo la voz y subtítulos animados tipo karaoke.',
+    ],
+    results: [
+      'El único paso de pago es el vídeo final, unos 67 créditos de Higgsfield en 720p. Una persona aprueba el creador y el storyboard, confirma el coste antes del vídeo y revisa el audio después, así que no hay cargos sorpresa.',
+      'El ejemplo completo, un anuncio para una marca de tablas de surf inventada, produjo cada entregable en orden: perfil de producto, brief, retrato del creador, storyboard, guion y subtítulos, además de un vídeo base y una versión mejorada.',
+    ],
+  },
+  it: {
+    category: 'IA · VIDEO PUBBLICITARI',
+    services: 'CLAUDE · HIGGSFIELD · VIDEO ADS UGC',
+    client: 'Open source',
+    industry: 'Brand DTC e marketing e-commerce',
+    layers: ['Orchestrazione', 'Pianificazione', 'Generazione di immagini', 'Generazione video', 'Post-produzione'],
+    description: [
+      "Una pipeline completa che trasforma una sola foto prodotto in uno spot video UGC finito, con un creator come protagonista. Claude dirige il lavoro attraverso sette skill riutilizzabili e Higgsfield genera il creator, lo storyboard e il video finale, con voce, sincronizzazione labiale e suono ambientale in un solo passaggio.",
+      "Lo spot esce con sottotitoli e una base musicale, e ogni passaggio finisce in una cartella datata, quindi ogni annuncio è completo e tracciabile.",
+    ],
+    challenges: [
+      "Un video IA generato in un colpo solo è una scommessa: il volto del creator cambia da un'inquadratura all'altra, il prodotto si deforma e ogni tentativo fallito consuma crediti a pagamento.",
+      "Anche le voci generate inciampano sui nomi dei brand, e una clip IA grezza senza sottotitoli né musica non sembra un vero spot.",
+    ],
+    solutions: [
+      "Il lavoro procede per passaggi economici e approvati prima dell'unica chiamata costosa: un profilo prodotto con un'immagine di riferimento pulita, un brief di una pagina con una mappa in tre tagli (gancio stretto, azione in macro, raccomandazione in campo largo), poi un ritratto del creator generato senza il prodotto.",
+      "Uno storyboard in tre riquadri fissa lo stesso creator e lo stesso prodotto nelle tre inquadrature. È questa immagine a mantenere il video finale coerente dall'inizio alla fine.",
+      "Il copione scrive i nomi dei brand in modo fonetico per la voce (per esempio «Bee» per «B»), mentre i sottotitoli mantengono la grafia reale. Seedance genera poi il video con voce nativa, e una fase di rifinitura aggiunge una musica abbassata sotto la voce e sottotitoli animati in stile karaoke.",
+    ],
+    results: [
+      "L'unico passaggio a pagamento è il video finale, circa 67 crediti Higgsfield a 720p. Una persona approva il creator e lo storyboard, conferma il costo prima del video e controlla l'audio dopo, quindi niente addebiti a sorpresa.",
+      "L'esempio completo, uno spot per un marchio di tavole da surf inventato, ha prodotto ogni elemento in ordine: profilo prodotto, brief, ritratto del creator, storyboard, copione e sottotitoli, più un video base e una versione rifinita.",
+    ],
+  },
+  de: {
+    category: 'KI · VIDEOANZEIGEN',
+    services: 'CLAUDE · HIGGSFIELD · UGC-VIDEOANZEIGEN',
+    client: 'Open Source',
+    industry: 'DTC-Marken & E-Commerce-Marketing',
+    layers: ['Orchestrierung', 'Planung', 'Bildgenerierung', 'Videogenerierung', 'Postproduktion'],
+    description: [
+      'Eine durchgängige Pipeline, die aus einem einzigen Produktfoto eine fertige UGC-Videoanzeige mit Creator macht. Claude steuert die Arbeit über sieben wiederverwendbare Skills, und Higgsfield erzeugt den Creator, das Storyboard und das finale Video – Stimme, Lippensynchronität und Umgebungston in einem Durchgang.',
+      'Die fertige Anzeige kommt mit Untertiteln und Musik, und jeder Schritt landet in einem datierten Ordner, sodass jede Anzeige vollständig und nachvollziehbar ist.',
+    ],
+    challenges: [
+      'KI-Video in einem Wurf ist ein Glücksspiel: Das Gesicht des Creators verändert sich zwischen den Einstellungen, das Produkt verformt sich, und jeder Fehlversuch kostet bezahlte Credits.',
+      'Generierte Stimmen stolpern außerdem über Markennamen, und ein roher KI-Clip ohne Untertitel und Musik wirkt nicht wie eine echte Anzeige.',
+    ],
+    solutions: [
+      'Die Arbeit baut sich in günstigen, freigegebenen Schritten vor dem einen teuren Aufruf auf: ein Produktprofil mit sauberem Referenzbild, ein einseitiges Briefing mit einem Drei-Schnitt-Plan (enger Hook, Makro-Action, weite Empfehlung), dann ein Creator-Porträt, das ohne das Produkt erzeugt wird.',
+      'Ein Storyboard mit drei Panels fixiert denselben Creator und dasselbe Produkt in allen drei Einstellungen. Genau dieses Bild hält das finale Video von Anfang bis Ende konsistent.',
+      'Das Skript schreibt Markennamen für die Stimme phonetisch (zum Beispiel „Bee“ für „B“), während die Untertitel die echte Schreibweise behalten. Seedance rendert dann das Video mit nativer Stimme, und ein Feinschliff-Schritt ergänzt eine abgesenkte Musikspur und animierte Karaoke-Untertitel.',
+    ],
+    results: [
+      'Der einzige bezahlte Schritt ist das finale Video, rund 67 Higgsfield-Credits in 720p. Ein Mensch gibt Creator und Storyboard frei, bestätigt die Kosten vor dem Video und prüft danach den Ton – keine Überraschungskosten.',
+      'Das durchgespielte Beispiel, eine Anzeige für eine erfundene Surfbrett-Marke, erzeugte jedes Artefakt der Reihe nach: Produktprofil, Briefing, Creator-Porträt, Storyboard, Skript und Untertiteldaten, dazu ein Basis- und ein veredeltes Video.',
+    ],
+  },
+};
+
 // Media lives in /public — prefix with the deploy base ('/portfolio/' on GitHub Pages)
 const BASE = import.meta.env.BASE_URL;
 
@@ -930,6 +1072,17 @@ const STUDIES: Study[] = [
     aspect: '1600/620',
     fit: 'contain',
     copy: OUTREACH_COPY,
+  },
+  {
+    id: 'ugc-ad-pipeline',
+    kind: 'ads',
+    title: 'Claude + Higgsfield UGC Ad Pipeline',
+    imageCount: 3,
+    date: [23, 6, 2026],
+    tools: ADS_TOOLS,
+    // Storyboard sheet is 1376x768; the portrait and product shots sit inside it uncropped
+    aspect: '1376/768',
+    copy: ADS_COPY,
   },
 ];
 
