@@ -36,6 +36,13 @@ const STRINGS = {
       'Outreach systems that find the right people, research them, write personal LinkedIn and email messages and keep the conversation going.',
     projectsIntroLead:
       'Automations that capture every inbound lead, score it with an LLM, write it to the CRM and alert sales on the hot ones within seconds.',
+    groupAgents: 'AI Agents',
+    groupAutomations: 'Automations',
+    groupWebsites: 'Websites & Web Apps',
+    groupShopify: 'Shopify Stores',
+    tabApps: 'Web Apps & Platforms',
+    projectsIntroApps:
+      'Live web apps I build and run: reseller panels, multi-site stores and dating platforms, with payments, automatic fulfilment and AI support built in.',
     tabWeb: 'Shopify Stores & Websites',
     projectOne: 'project',
     projectMany: 'projects',
@@ -102,6 +109,13 @@ const STRINGS = {
       'Des systèmes de prospection qui trouvent les bonnes personnes, se renseignent sur elles, rédigent des messages LinkedIn et e-mail personnels et entretiennent la conversation.',
     projectsIntroLead:
       'Des automatisations qui captent chaque lead entrant, le notent avec un LLM, l’enregistrent dans le CRM et alertent les commerciaux sur les leads chauds en quelques secondes.',
+    groupAgents: 'Agents IA',
+    groupAutomations: 'Automatisations',
+    groupWebsites: 'Sites & applications web',
+    groupShopify: 'Boutiques Shopify',
+    tabApps: 'Applications web & plateformes',
+    projectsIntroApps:
+      "Des applications web en ligne que je construis et exploite : panels revendeurs, boutiques multi-sites et plateformes de rencontre, avec paiements, traitement automatique et support IA intégrés.",
     tabWeb: 'Boutiques Shopify & sites web',
     projectOne: 'projet',
     projectMany: 'projets',
@@ -168,6 +182,13 @@ const STRINGS = {
       'Sistemas de prospección que encuentran a las personas adecuadas, las investigan, escriben mensajes personales por LinkedIn y correo y mantienen viva la conversación.',
     projectsIntroLead:
       'Automatizaciones que captan cada lead entrante, lo puntúan con un LLM, lo guardan en el CRM y avisan a ventas de los leads calientes en segundos.',
+    groupAgents: 'Agentes de IA',
+    groupAutomations: 'Automatizaciones',
+    groupWebsites: 'Sitios y apps web',
+    groupShopify: 'Tiendas Shopify',
+    tabApps: 'Apps web y plataformas',
+    projectsIntroApps:
+      'Aplicaciones web en producción que construyo y gestiono: paneles de reventa, tiendas multisitio y plataformas de citas, con pagos, procesamiento automático y soporte con IA.',
     tabWeb: 'Tiendas Shopify y sitios web',
     projectOne: 'proyecto',
     projectMany: 'proyectos',
@@ -234,6 +255,13 @@ const STRINGS = {
       'Sistemi di outreach che trovano le persone giuste, si informano su di loro, scrivono messaggi personali su LinkedIn e via e-mail e portano avanti la conversazione.',
     projectsIntroLead:
       'Automazioni che acquisiscono ogni lead in entrata, lo valutano con un LLM, lo salvano nel CRM e avvisano le vendite dei lead caldi in pochi secondi.',
+    groupAgents: 'Agenti IA',
+    groupAutomations: 'Automazioni',
+    groupWebsites: 'Siti e app web',
+    groupShopify: 'Negozi Shopify',
+    tabApps: 'App web e piattaforme',
+    projectsIntroApps:
+      'App web in produzione che costruisco e gestisco: pannelli per rivenditori, negozi multi-sito e piattaforme di incontri, con pagamenti, evasione automatica e supporto IA integrati.',
     tabWeb: 'Negozi Shopify e siti web',
     projectOne: 'progetto',
     projectMany: 'progetti',
@@ -300,6 +328,13 @@ const STRINGS = {
       'Outreach-Systeme, die die richtigen Leute finden, recherchieren, persönliche LinkedIn- und E-Mail-Nachrichten schreiben und das Gespräch am Laufen halten.',
     projectsIntroLead:
       'Automatisierungen, die jeden eingehenden Lead erfassen, per LLM bewerten, ins CRM schreiben und den Vertrieb bei heißen Leads innerhalb von Sekunden benachrichtigen.',
+    groupAgents: 'KI-Agenten',
+    groupAutomations: 'Automatisierungen',
+    groupWebsites: 'Websites & Web-Apps',
+    groupShopify: 'Shopify-Shops',
+    tabApps: 'Web-Apps & Plattformen',
+    projectsIntroApps:
+      'Live-Web-Apps, die ich baue und betreibe: Reseller-Panels, Multi-Site-Shops und Dating-Plattformen, mit Zahlungen, automatischer Abwicklung und KI-Support.',
     tabWeb: 'Shopify-Shops & Websites',
     projectOne: 'Projekt',
     projectMany: 'Projekte',

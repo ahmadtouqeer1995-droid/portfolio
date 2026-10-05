@@ -1,4 +1,5 @@
 import { useLang, type Lang } from '@/i18n';
+import { WEB_APPS } from '@/data/web-apps';
 
 // 10 e-commerce builds from the freelance web-development years — kept as
 // delivery proof now that the site leads with AI engineering. AI case studies
@@ -10,27 +11,27 @@ import { useLang, type Lang } from '@/i18n';
 // paragraph follow the site language.
 
 // ---- Navigation rule (applies to every project added from now on) ----
-// /projects            → full screen, one big tile per category, each with a thumbnail
-// category, 1 project  → the tile opens that project's details directly
-// category, 2+ projects→ the tile opens /projects/<slug>: one project per screen,
-//                        big thumbnail, click → /projects/<id> details
+// /projects          → one screen, no scrolling: four buttons (PROJECT_GROUPS)
+// /projects/<group>  → that group's board: taped thumbnails with post-it titles
+// /projects/<id>     → the case study, back button → its group's board
+// A project id must never equal a group slug — the group route would hide it.
 // To add a project: give it a `kind`, drop its pictures in /public/projects,
-// and it lands in the right category automatically. A project id must never
-// equal a category slug — the category route would hide the project page.
+// and it lands with its group automatically.
 
-/** Which category tile a project lives under. */
-export type ProjectKind = 'voice' | 'lead' | 'crm' | 'outreach' | 'ads' | 'web';
+/** Which group a project belongs to (its label shows on the Projects page). */
+export type ProjectKind = 'voice' | 'lead' | 'crm' | 'outreach' | 'ads' | 'apps' | 'web';
 
 export const CATEGORIES: {
   kind: ProjectKind;
   slug: string;
-  labelKey: 'tabVoice' | 'tabLead' | 'tabCrm' | 'tabOutreach' | 'tabAds' | 'tabWeb';
+  labelKey: 'tabVoice' | 'tabLead' | 'tabCrm' | 'tabOutreach' | 'tabAds' | 'tabApps' | 'tabWeb';
   introKey:
     | 'projectsIntroVoice'
     | 'projectsIntroLead'
     | 'projectsIntroCrm'
     | 'projectsIntroOutreach'
     | 'projectsIntroAds'
+    | 'projectsIntroApps'
     | 'projectsIntro';
 }[] = [
   { kind: 'voice', slug: 'voice-agents', labelKey: 'tabVoice', introKey: 'projectsIntroVoice' },
@@ -38,14 +39,26 @@ export const CATEGORIES: {
   { kind: 'crm', slug: 'crm-automation', labelKey: 'tabCrm', introKey: 'projectsIntroCrm' },
   { kind: 'outreach', slug: 'linkedin-outreach', labelKey: 'tabOutreach', introKey: 'projectsIntroOutreach' },
   { kind: 'ads', slug: 'ai-video-ads', labelKey: 'tabAds', introKey: 'projectsIntroAds' },
+  { kind: 'apps', slug: 'web-apps', labelKey: 'tabApps', introKey: 'projectsIntroApps' },
   { kind: 'web', slug: 'shopify-websites', labelKey: 'tabWeb', introKey: 'projectsIntro' },
 ];
 
-/** Where a category tile leads: straight to the project if it is alone, else the list. */
-export function categoryPath(kind: ProjectKind, projects: Project[]): string {
-  const inCategory = projects.filter((p) => p.kind === kind);
-  if (inCategory.length === 1) return `/projects/${inCategory[0].id}`;
-  return `/projects/${CATEGORIES.find((c) => c.kind === kind)!.slug}`;
+/** The four groups on the Projects page, one button each, each opening its
+ *  board at /projects/<slug>. */
+export const PROJECT_GROUPS: {
+  slug: string;
+  labelKey: 'groupAgents' | 'groupAutomations' | 'groupWebsites' | 'groupShopify';
+  kinds: ProjectKind[];
+}[] = [
+  { slug: 'agents', labelKey: 'groupAgents', kinds: ['voice', 'ads'] },
+  { slug: 'automations', labelKey: 'groupAutomations', kinds: ['lead', 'crm', 'outreach'] },
+  { slug: 'websites', labelKey: 'groupWebsites', kinds: ['apps'] },
+  { slug: 'shopify', labelKey: 'groupShopify', kinds: ['web'] },
+];
+
+/** The group a project's kind belongs to. */
+export function groupOf(kind: ProjectKind) {
+  return PROJECT_GROUPS.find((g) => g.kinds.includes(kind))!;
 }
 
 export type Project = {
@@ -66,6 +79,8 @@ export type Project = {
   images: string[];
   /** Walkthrough video — AI case studies without one skip the video block. */
   video?: string;
+  /** The live site, for projects that are online — the title links to it. */
+  url?: string;
   /** Tech stack table, one row per layer (AI case studies). */
   stack?: { layer: string; tools: string }[];
   /** Picture frame ratio, width/height — defaults to the store screenshots' 1122/1218. */
@@ -317,7 +332,7 @@ const COPY: Record<Lang, Copy> = {
 // ---- AI case studies ----
 // Each one: id, category, pictures (/public/projects/<id>-1.png … -N.png),
 // stack tools (language-independent) and localized copy in all 5 languages.
-type StudyCopy = {
+export type StudyCopy = {
   category: string;
   services: string;
   client: string;
@@ -330,7 +345,7 @@ type StudyCopy = {
   results: string[];
 };
 
-type Study = {
+export type Study = {
   id: string;
   kind: ProjectKind;
   title: string;
@@ -342,6 +357,10 @@ type Study = {
   /** Picture file type — defaults to png. */
   ext?: 'png' | 'jpg';
   fit?: 'cover' | 'contain';
+  /** Has /public/projects/<id>-video.mp4. */
+  video?: boolean;
+  /** The live site, if it is online. */
+  url?: string;
   copy: Record<Lang, StudyCopy>;
 };
 
@@ -1113,6 +1132,8 @@ function getStudy(study: Study, lang: Lang): Project {
     stack: copy.layers.map((layer, i) => ({ layer, tools: study.tools[i] })),
     aspect: study.aspect,
     fit: study.fit,
+    video: study.video ? `${BASE}projects/${study.id}-video.mp4` : undefined,
+    url: study.url,
   };
 }
 
@@ -1143,8 +1164,8 @@ export function getProjects(lang: Lang): Project[] {
       video: `${BASE}projects/${store.id}-video.mp4`,
     };
   });
-  // AI work leads; the e-commerce builds follow as delivery proof
-  return [...STUDIES.map((s) => getStudy(s, lang)), ...stores];
+  // AI work leads, then the live web apps; the e-commerce builds follow as delivery proof
+  return [...STUDIES.map((s) => getStudy(s, lang)), ...WEB_APPS.map((s) => getStudy(s, lang)), ...stores];
 }
 
 /** Projects in the currently selected site language. */

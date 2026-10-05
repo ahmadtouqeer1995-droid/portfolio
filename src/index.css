@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+/* Handwriting for the post-it notes (loaded in index.html):
+   font-scrawl = titles, font-hand = paragraphs */
+@theme {
+  --font-scrawl: 'Caveat', 'Segoe Print', cursive;
+  --font-hand: 'Kalam', 'Segoe Print', cursive;
+}
+
 html,
 body {
   height: 100%;

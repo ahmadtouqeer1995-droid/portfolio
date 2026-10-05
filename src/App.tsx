@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { CATEGORIES } from '@/data/projects';
+import { PROJECT_GROUPS } from '@/data/projects';
 import Contact from '@/pages/Contact';
-import ProjectCategory from '@/pages/ProjectCategory';
+import ProjectGroup from '@/pages/ProjectGroup';
 import Home from '@/pages/Home';
 import Me from '@/pages/Me';
 import ProjectDetail from '@/pages/ProjectDetail';
@@ -16,9 +16,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/me' element={<Me />} />
         <Route path='/projects' element={<Projects />} />
-        {/* Category lists (static paths outrank /projects/:id) */}
-        {CATEGORIES.map((c) => (
-          <Route key={c.slug} path={`/projects/${c.slug}`} element={<ProjectCategory kind={c.kind} />} />
+        {/* Group boards (static paths outrank /projects/:id) */}
+        {PROJECT_GROUPS.map((g) => (
+          <Route key={g.slug} path={`/projects/${g.slug}`} element={<ProjectGroup slug={g.slug} />} />
         ))}
         <Route path='/projects/:id' element={<ProjectDetail />} />
         <Route path='/skills' element={<Skills />} />
