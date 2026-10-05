@@ -25,25 +25,31 @@ const SIZES = {
   icon: 'h-10 w-10',
 };
 
-export interface NeoButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type Look = {
   variant?: keyof typeof VARIANTS;
   size?: keyof typeof SIZES;
   /** Shown pushed in (no shadow), e.g. the selected option. */
   pressed?: boolean;
+};
+
+/** The button's classes, for a link that should look like one. */
+export function neoButtonClasses({ variant = 'default', size = 'default', pressed }: Look = {}) {
+  return cn(
+    'inline-flex items-center justify-center gap-2 rounded-[5px] text-sm font-semibold whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',
+    VARIANTS[variant],
+    SIZES[size],
+    pressed && PUSH
+  );
 }
 
+export interface NeoButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Look {}
+
 export const NeoButton = React.forwardRef<HTMLButtonElement, NeoButtonProps>(
-  ({ className, variant = 'default', size = 'default', pressed, ...props }, ref) => (
+  ({ className, variant, size, pressed, ...props }, ref) => (
     <button
       ref={ref}
       aria-pressed={pressed}
-      className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-[5px] text-sm font-semibold whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',
-        VARIANTS[variant],
-        SIZES[size],
-        pressed && PUSH,
-        className
-      )}
+      className={cn(neoButtonClasses({ variant, size, pressed }), className)}
       {...props}
     />
   )

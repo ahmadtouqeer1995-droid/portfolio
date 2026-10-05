@@ -29,7 +29,7 @@ type Entry = {
 
 const ENTRIES: Entry[] = [
   { id: 'freelance', org: 'Freelance | Self-Employed', location: 'Paris, France · Remote', start: '2023-11', end: null, kind: 'work' },
-  { id: 'sopra', org: 'Sopra Steria', location: 'Toulouse, France', start: '2026-08', end: null, kind: 'work' },
+  { id: 'sopra', org: 'Sopra Steria', location: 'Toulouse, France', start: '2026-08', end: '2026-09', kind: 'work' },
   { id: 'khome', org: 'KHOME', location: 'Paris, France', start: '2026-01', end: '2026-07', kind: 'work' },
   { id: 'havas', org: 'Havas Group', location: 'Paris, France', start: '2025-02', end: '2025-11', kind: 'work' },
   { id: 'allianz', org: 'Allianz France', location: 'Paris, France', start: '2024-01', end: '2025-01', kind: 'work' },
@@ -57,11 +57,11 @@ const COPY: Record<Lang, Copy> = {
     present: 'Present',
     titles: {
       khome: 'Senior Data Scientist (Freelance)',
-      havas: 'AI & Automation Engineer',
-      allianz: 'Data, Automation & Artificial Intelligence',
+      havas: 'AI & Automation Engineer (Freelance)',
+      allianz: 'Data, Automation & Artificial Intelligence (Freelance)',
       decode: 'No Code, Automation & AI',
       freelance: 'Generative AI Engineer',
-      sopra: 'AI Engineer',
+      sopra: 'AI Engineer (Freelance)',
       parisCite: 'MSc Machine Learning for Data Science',
     },
     descriptions: {
@@ -84,11 +84,11 @@ const COPY: Record<Lang, Copy> = {
     present: 'Aujourd’hui',
     titles: {
       khome: 'Data Scientist Senior (Freelance)',
-      havas: 'Ingénieur IA & Automatisation',
-      allianz: 'Data, Automatisation et Intelligence Artificielle',
+      havas: 'Ingénieur IA & Automatisation (Freelance)',
+      allianz: 'Data, Automatisation et Intelligence Artificielle (Freelance)',
       decode: 'No Code, Automatisation & IA',
       freelance: 'Ingénieur en IA générative',
-      sopra: 'Ingénieur Intelligence Artificielle',
+      sopra: 'Ingénieur Intelligence Artificielle (Freelance)',
       parisCite: 'Master Machine Learning pour la Science des Données',
     },
     descriptions: {
@@ -111,11 +111,11 @@ const COPY: Record<Lang, Copy> = {
     present: 'Actualidad',
     titles: {
       khome: 'Data Scientist Senior (Freelance)',
-      havas: 'Ingeniero de IA y Automatización',
-      allianz: 'Datos, Automatización e Inteligencia Artificial',
+      havas: 'Ingeniero de IA y Automatización (Freelance)',
+      allianz: 'Datos, Automatización e Inteligencia Artificial (Freelance)',
       decode: 'No Code, Automatización e IA',
       freelance: 'Ingeniero de IA generativa',
-      sopra: 'Ingeniero de Inteligencia Artificial',
+      sopra: 'Ingeniero de Inteligencia Artificial (Freelance)',
       parisCite: 'Máster en Machine Learning para Ciencia de Datos',
     },
     descriptions: {
@@ -138,11 +138,11 @@ const COPY: Record<Lang, Copy> = {
     present: 'Oggi',
     titles: {
       khome: 'Data Scientist Senior (Freelance)',
-      havas: 'Ingegnere IA e Automazione',
-      allianz: 'Dati, Automazione e Intelligenza Artificiale',
+      havas: 'Ingegnere IA e Automazione (Freelance)',
+      allianz: 'Dati, Automazione e Intelligenza Artificiale (Freelance)',
       decode: 'No Code, Automazione e IA',
       freelance: 'Ingegnere di IA generativa',
-      sopra: 'Ingegnere Intelligenza Artificiale',
+      sopra: 'Ingegnere Intelligenza Artificiale (Freelance)',
       parisCite: 'Laurea magistrale in Machine Learning per la Data Science',
     },
     descriptions: {
@@ -165,11 +165,11 @@ const COPY: Record<Lang, Copy> = {
     present: 'Heute',
     titles: {
       khome: 'Senior Data Scientist (freiberuflich)',
-      havas: 'KI- & Automatisierungs-Ingenieur',
-      allianz: 'Daten, Automatisierung und Künstliche Intelligenz',
+      havas: 'KI- & Automatisierungs-Ingenieur (freiberuflich)',
+      allianz: 'Daten, Automatisierung und Künstliche Intelligenz (freiberuflich)',
       decode: 'No Code, Automatisierung & KI',
       freelance: 'Ingenieur für generative KI',
-      sopra: 'KI-Ingenieur',
+      sopra: 'KI-Ingenieur (freiberuflich)',
       parisCite: 'M.Sc. Machine Learning für Data Science',
     },
     descriptions: {
