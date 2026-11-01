@@ -18,7 +18,7 @@ function Projects() {
 
   usePageMeta(
     'Projects & Case Studies — Ahmad Touqeer',
-    'AI agents (an offline voice agent, a Claude-directed video ad pipeline), n8n + LLM automations for lead capture, CRM routing, LinkedIn content, video content, CV screening and local RAG, and full-stack websites for Synthflow, ServiceNow, Bland AI, Clay, Durable, Framer, Harvey and Speculo, with screenshots, challenges, solutions and results.'
+    'n8n + LLM automations for Telegram lead capture, fact-checked LinkedIn posts, Hacker News video content, CV screening and a local RAG chatbot, and full-stack websites for Synthflow, ServiceNow, Bland AI, Clay, Durable, Framer, Harvey and Speculo, with screenshots, challenges, solutions and results.'
   );
 
   return (

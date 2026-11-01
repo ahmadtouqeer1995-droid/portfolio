@@ -53,6 +53,11 @@ const SHOW_STORES = false;
  *  Websites board; only the client sites show. Flip to true to bring them back. */
 const SHOW_OLD_SITES = false;
 
+/** The first AI case studies (AXIOM, the UGC ad pipeline and the three early
+ *  automations, `STUDIES` below) are off the site, which leaves the AI Agents
+ *  group empty, so its button hides too. Flip to true to bring them back. */
+const SHOW_OLD_STUDIES = false;
+
 /** The groups on the Projects page, one button each, each opening its
  *  board at /projects/<slug>. */
 const ALL_GROUPS: {
@@ -66,7 +71,9 @@ const ALL_GROUPS: {
   { slug: 'shopify', labelKey: 'groupShopify', kinds: ['web'] },
 ];
 
-export const PROJECT_GROUPS = SHOW_STORES ? ALL_GROUPS : ALL_GROUPS.filter((g) => g.slug !== 'shopify');
+export const PROJECT_GROUPS = ALL_GROUPS.filter(
+  (g) => (SHOW_STORES || g.slug !== 'shopify') && (SHOW_OLD_STUDIES || g.slug !== 'agents')
+);
 
 /** The group a project's kind belongs to. */
 export function groupOf(kind: ProjectKind) {
@@ -1182,7 +1189,7 @@ export function getProjects(lang: Lang): Project[] {
   });
   // AI work leads, then the live web apps; the e-commerce builds follow when shown
   return [
-    ...STUDIES.map((s) => getStudy(s, lang)),
+    ...(SHOW_OLD_STUDIES ? STUDIES.map((s) => getStudy(s, lang)) : []),
     ...AUTOMATIONS.map((s) => getStudy(s, lang)),
     ...(SHOW_OLD_SITES ? WEB_APPS.map((s) => getStudy(s, lang)) : []),
     ...CLIENT_SITES.map((s) => getStudy(s, lang)),
