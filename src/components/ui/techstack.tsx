@@ -38,6 +38,11 @@ export type ToolDockProps = Omit<React.ComponentPropsWithoutRef<'div'>, 'childre
   tilt?: boolean;
   /** Accessible name for the list. */
   label?: string;
+  /** `vertical` stacks the tiles top to bottom, sized to fit the screen height. */
+  orientation?: 'horizontal' | 'vertical';
+  /** Vertical only: the screen edge the dock sits on. Tiles pop out and the
+   *  tooltip shows on the opposite side, toward the middle of the screen. */
+  side?: 'left' | 'right';
 };
 
 /** Fixed per position, so the row leans the same way on every render. */
@@ -84,6 +89,8 @@ type DockTileProps = {
   overlap: number;
   magnification: number;
   tilt: boolean;
+  vertical: boolean;
+  onLeft: boolean;
 };
 
 /**
@@ -101,6 +108,8 @@ const DockTile = React.memo(function DockTile({
   overlap,
   magnification,
   tilt,
+  vertical,
+  onLeft,
 }: DockTileProps) {
   const lean = tilt ? TILT[index % TILT.length] : 0;
   const room = Math.max(0, overlap + magnification / 2);
@@ -119,9 +128,14 @@ const DockTile = React.memo(function DockTile({
   });
 
   const swell = useSpring(near, SPRING);
-  const x = useSpring(push, SPRING);
+  const slide = useSpring(push, SPRING);
   const scale = useTransform(swell, (v) => 1 + v * magnification);
-  const y = useTransform(swell, (v) => -v * LIFT * layout.current.width);
+  const lift = useTransform(swell, (v) => -v * LIFT * layout.current.width);
+  // Along the row the neighbours make room; across it the tile pops out
+  // (upward for a horizontal row, toward the screen's middle for a vertical one).
+  const out = useTransform(lift, (v) => (onLeft ? -v : v));
+  const x = vertical ? out : slide;
+  const y = vertical ? slide : lift;
   const rotate = useTransform(swell, (v) => lean * (1 - v));
 
   const tile = (
@@ -129,7 +143,10 @@ const DockTile = React.memo(function DockTile({
       role={item.onSelect ? undefined : 'img'}
       aria-label={item.onSelect ? undefined : item.label}
       style={{ x, y, scale, rotate }}
-      className='size-(--tool-dock-size) origin-bottom will-change-transform select-none'
+      className={cn(
+        'size-(--tool-dock-size) will-change-transform select-none',
+        vertical ? (onLeft ? 'origin-left' : 'origin-right') : 'origin-bottom'
+      )}
     >
       {item.icon}
     </motion.div>
@@ -143,7 +160,7 @@ const DockTile = React.memo(function DockTile({
       className='pointer-events-none relative flex'
       style={{
         zIndex: count - index,
-        marginLeft: index === 0 ? 0 : `calc(var(--tool-dock-size) * ${-overlap})`,
+        [vertical ? 'marginTop' : 'marginLeft']: index === 0 ? 0 : `calc(var(--tool-dock-size) * ${-overlap})`,
       }}
     >
       {item.onSelect ? (
@@ -171,6 +188,8 @@ export function ToolDock({
   magnification = 0.28,
   tilt = true,
   label = 'Tools',
+  orientation = 'horizontal',
+  side = 'right',
   className,
   ...props
 }: ToolDockProps) {
@@ -184,6 +203,8 @@ export function ToolDock({
   const [at, setAt] = React.useState(0);
   const [text, setText] = React.useState(items[0]?.label ?? '');
   const clickable = items.some((item) => item.onSelect);
+  const vertical = orientation === 'vertical';
+  const onLeft = vertical && side === 'left';
 
   React.useEffect(() => {
     const el = rail.current;
@@ -191,7 +212,9 @@ export function ToolDock({
     const measure = () => {
       const slots = [...el.children] as HTMLElement[];
       layout.current = {
-        centers: slots.map((li) => li.offsetLeft + li.offsetWidth / 2),
+        centers: slots.map((li) =>
+          vertical ? li.offsetTop + li.offsetHeight / 2 : li.offsetLeft + li.offsetWidth / 2
+        ),
         width: slots[0]?.offsetWidth ?? 0,
       };
     };
@@ -199,14 +222,20 @@ export function ToolDock({
     const observer = new ResizeObserver(measure);
     observer.observe(el);
     return () => observer.disconnect();
-  }, [items.length]);
+  }, [items.length, vertical]);
 
-  /** Index of the tile whose resting centre is nearest `clientX`. */
-  const nearestTo = (clientX: number) => {
+  /** The pointer's position along the row, from the row's start. */
+  const along = (event: { clientX: number; clientY: number }) => {
+    const box = rail.current!.getBoundingClientRect();
+    return vertical ? event.clientY - box.top : event.clientX - box.left;
+  };
+
+  /** Index of the tile whose resting centre is nearest the pointer. */
+  const nearestTo = (event: { clientX: number; clientY: number }) => {
     const el = rail.current;
     const { centers } = layout.current;
     if (!el || centers.length === 0) return null;
-    const x = clientX - el.getBoundingClientRect().left;
+    const x = along(event);
     let nearest = 0;
     for (let i = 1; i < centers.length; i++) {
       if (Math.abs(x - centers[i]) < Math.abs(x - centers[nearest])) nearest = i;
@@ -214,11 +243,10 @@ export function ToolDock({
     return nearest;
   };
 
-  const track = (clientX: number) => {
-    const el = rail.current;
-    if (!el) return;
-    pointer.set(clientX - el.getBoundingClientRect().left);
-    const nearest = nearestTo(clientX);
+  const track = (event: { clientX: number; clientY: number }) => {
+    if (!rail.current) return;
+    pointer.set(along(event));
+    const nearest = nearestTo(event);
     if (nearest === null || nearest === current.current) return;
     setGlide(current.current !== null);
     current.current = nearest;
@@ -239,14 +267,29 @@ export function ToolDock({
   return (
     <div
       data-slot='tool-dock'
-      className={cn('@container flex w-full justify-center', className)}
+      className={cn(
+        vertical
+          ? cn('flex h-full flex-col justify-center', onLeft ? 'items-start' : 'items-end')
+          : '@container flex w-full justify-center',
+        className
+      )}
       {...props}
     >
       <div
-        className='relative w-fit pt-[calc(var(--tool-dock-size)*var(--tool-dock-rise)+2.75rem)]'
+        className={cn(
+          'relative w-fit',
+          vertical
+            ? onLeft
+              ? 'pr-[calc(var(--tool-dock-size)*var(--tool-dock-rise)+0.75rem)]'
+              : 'pl-[calc(var(--tool-dock-size)*var(--tool-dock-rise)+0.75rem)]'
+            : 'pt-[calc(var(--tool-dock-size)*var(--tool-dock-rise)+2.75rem)]'
+        )}
         style={
           {
-            '--tool-dock-size': `min(${size}px, calc((100cqw - 1rem) / ${span}))`,
+            // vertical: fit the screen height minus a 1.5rem margin top and bottom
+            '--tool-dock-size': vertical
+              ? `min(${size}px, calc((100dvh - 3rem) / ${span}))`
+              : `min(${size}px, calc((100cqw - 1rem) / ${span}))`,
             '--tool-dock-rise': rise,
           } as React.CSSProperties
         }
@@ -256,13 +299,27 @@ export function ToolDock({
           data-slot='tool-dock-tooltip'
           data-state={active === null ? 'closed' : 'open'}
           className={cn(
-            'pointer-events-none absolute bottom-[calc(var(--tool-dock-size)*(1+var(--tool-dock-rise))+0.625rem)] left-0 z-50 rounded-md border border-white/60 bg-white/80 px-2.5 py-1 text-[13px] font-medium whitespace-nowrap text-neutral-800 opacity-0 shadow-sm backdrop-blur-md ease-[cubic-bezier(0.22,1,0.36,1)] data-[state=open]:opacity-100 motion-reduce:transition-none',
+            'pointer-events-none absolute z-50 rounded-md border border-white/60 bg-white/80 px-2.5 py-1 text-[13px] font-medium whitespace-nowrap text-neutral-800 opacity-0 shadow-sm backdrop-blur-md ease-[cubic-bezier(0.22,1,0.36,1)] data-[state=open]:opacity-100 motion-reduce:transition-none',
+            vertical
+              ? onLeft
+                ? 'top-0 left-[calc(var(--tool-dock-size)*(1+var(--tool-dock-rise))+0.625rem)]'
+                : 'top-0 right-[calc(var(--tool-dock-size)*(1+var(--tool-dock-rise))+0.625rem)]'
+              : 'bottom-[calc(var(--tool-dock-size)*(1+var(--tool-dock-rise))+0.625rem)] left-0',
             glide ? 'transition-[translate,opacity] duration-300' : 'transition-opacity duration-200'
           )}
-          style={{ translate: `calc(${at}px - 50%) 0` }}
+          style={{ translate: vertical ? `0 calc(${at}px - 50%)` : `calc(${at}px - 50%) 0` }}
         >
           {text}
-          <span className='absolute -bottom-[5px] left-1/2 -ml-[4.5px] size-[9px] rotate-45 rounded-br-[2px] border-r border-b border-white/60 bg-white/80' />
+          <span
+            className={cn(
+              'absolute size-[9px] rotate-45 border-white/60 bg-white/80',
+              vertical
+                ? onLeft
+                  ? 'top-1/2 -left-[5px] -mt-[4.5px] rounded-bl-[2px] border-b border-l'
+                  : 'top-1/2 -right-[5px] -mt-[4.5px] rounded-tr-[2px] border-t border-r'
+                : 'left-1/2 -bottom-[5px] -ml-[4.5px] rounded-br-[2px] border-r border-b'
+            )}
+          />
         </span>
 
         <motion.ul
@@ -273,8 +330,8 @@ export function ToolDock({
           // Deal in on mount. The original's whileInView could leave the tiles
           // invisible after a hot reload remounted the row.
           animate='shown'
-          onPointerMove={(event) => track(event.clientX)}
-          onPointerDown={(event) => track(event.clientX)}
+          onPointerMove={track}
+          onPointerDown={track}
           onPointerLeave={release}
           onPointerUp={(event) => {
             if (event.pointerType !== 'mouse') release();
@@ -283,10 +340,14 @@ export function ToolDock({
           onClick={(event) => {
             // detail 0 = keyboard click, already handled by the tile's button
             if (event.detail === 0) return;
-            const nearest = nearestTo(event.clientX);
+            const nearest = nearestTo(event);
             if (nearest !== null) items[nearest].onSelect?.();
           }}
-          className={cn('pointer-events-auto relative flex w-fit touch-pan-y', clickable && 'cursor-pointer')}
+          className={cn(
+            'pointer-events-auto relative flex w-fit',
+            vertical ? 'flex-col touch-pan-x' : 'touch-pan-y',
+            clickable && 'cursor-pointer'
+          )}
         >
           {items.map((item, index) => (
             <DockTile
@@ -300,6 +361,8 @@ export function ToolDock({
               overlap={overlap}
               magnification={magnification}
               tilt={tilt}
+              vertical={vertical}
+              onLeft={onLeft}
             />
           ))}
         </motion.ul>

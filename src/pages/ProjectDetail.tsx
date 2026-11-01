@@ -139,7 +139,7 @@ function ProjectDetail() {
             </a>
           )}
           <div className='mt-5 grid grid-cols-2 gap-x-5 gap-y-3'>
-            <Meta label={t('published')} value={project.published} />
+            {project.published && <Meta label={t('published')} value={project.published} />}
             <Meta label={t('services')} value={project.services} />
             <Meta label={t('client')} value={project.client} />
             <Meta label={t('industry')} value={project.industry} />

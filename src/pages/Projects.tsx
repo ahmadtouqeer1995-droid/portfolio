@@ -6,8 +6,8 @@ import { NeoButton } from '@/components/ui/neo-button';
 import { PROJECT_GROUPS, useProjects } from '@/data/projects';
 import { useLang, usePageMeta } from '@/i18n';
 
-// Projects: ONE screen, no scrolling — just four neobrutalism buttons, one
-// per group (AI agents, automations, websites, Shopify stores). A button
+// Projects: ONE screen, no scrolling — just neobrutalism buttons, one per
+// group (AI agents, automations, websites; Shopify is hidden). A button
 // opens that group's board (/projects/<group>), where each project is a
 // taped thumbnail with a post-it title. See the rule in data/projects.ts.
 
@@ -18,7 +18,7 @@ function Projects() {
 
   usePageMeta(
     'Projects & Case Studies — Ahmad Touqeer',
-    'AI agents (an offline voice agent, a Claude-directed video ad pipeline), n8n + LLM automations for lead qualification, CRM routing and LinkedIn outreach, 10 live websites and web apps on Next.js, Supabase and Cloudflare, and 10 Shopify stores, with screenshots, challenges, solutions and results.'
+    'AI agents (an offline voice agent, a Claude-directed video ad pipeline), n8n + LLM automations for lead capture, CRM routing, LinkedIn content, video content, CV screening and local RAG, and full-stack websites for Synthflow, ServiceNow, Bland AI, Clay, Durable, Framer, Harvey and Speculo, with screenshots, challenges, solutions and results.'
   );
 
   return (

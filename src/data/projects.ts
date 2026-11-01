@@ -1,5 +1,7 @@
 import { useLang, type Lang } from '@/i18n';
 import { WEB_APPS } from '@/data/web-apps';
+import { CLIENT_SITES } from '@/data/client-sites';
+import { AUTOMATIONS } from '@/data/automations';
 
 // 10 e-commerce builds from the freelance web-development years — kept as
 // delivery proof now that the site leads with AI engineering. AI case studies
@@ -43,9 +45,17 @@ export const CATEGORIES: {
   { kind: 'web', slug: 'shopify-websites', labelKey: 'tabWeb', introKey: 'projectsIntro' },
 ];
 
-/** The four groups on the Projects page, one button each, each opening its
+/** The Shopify stores are off the site: only AI agents, automations and web
+ *  apps show. Flip to true to bring the Shopify group back. */
+const SHOW_STORES = false;
+
+/** The older web apps (Xsmmpanel … Apoile, src/data/web-apps.ts) are off the
+ *  Websites board; only the client sites show. Flip to true to bring them back. */
+const SHOW_OLD_SITES = false;
+
+/** The groups on the Projects page, one button each, each opening its
  *  board at /projects/<slug>. */
-export const PROJECT_GROUPS: {
+const ALL_GROUPS: {
   slug: string;
   labelKey: 'groupAgents' | 'groupAutomations' | 'groupWebsites' | 'groupShopify';
   kinds: ProjectKind[];
@@ -55,6 +65,8 @@ export const PROJECT_GROUPS: {
   { slug: 'websites', labelKey: 'groupWebsites', kinds: ['apps'] },
   { slug: 'shopify', labelKey: 'groupShopify', kinds: ['web'] },
 ];
+
+export const PROJECT_GROUPS = SHOW_STORES ? ALL_GROUPS : ALL_GROUPS.filter((g) => g.slug !== 'shopify');
 
 /** The group a project's kind belongs to. */
 export function groupOf(kind: ProjectKind) {
@@ -66,8 +78,9 @@ export type Project = {
   kind: ProjectKind;
   title: string;
   category: string;
-  date: string;
-  published: string;
+  /** Absent for projects shown without a date. */
+  date?: string;
+  published?: string;
   services: string;
   client: string;
   industry: string;
@@ -99,17 +112,18 @@ type Store = {
   picCount: number;
 };
 
+// Order here is the order on the Shopify board: strongest stores first
 const STORES: Store[] = [
-  { id: 'hehku', name: 'Hehku', theme: 'Taiga', client: 'SmuutiSkin', date: [14, 3, 2023], picCount: 6 },
-  { id: 'bubbly', name: 'Bubbly', theme: 'Taiga', client: 'Bubbly Drinks', date: [2, 7, 2023], picCount: 5 },
-  { id: 'magic', name: 'Magic', theme: 'Maya', client: 'Maya Studio', date: [19, 10, 2023], picCount: 8 },
+  { id: 'phenomena', name: 'Phenomena', theme: 'Palo Alto', client: 'Phenomena Beauty', date: [9, 4, 2025], picCount: 8 },
   { id: 'throne', name: 'Throne', theme: 'King', client: 'King Supply', date: [8, 1, 2024], picCount: 7 },
-  { id: 'luxe', name: 'Luxe', theme: 'Luxe', client: 'La Fleur', date: [27, 4, 2024], picCount: 8 },
+  { id: 'bubbly', name: 'Bubbly', theme: 'Taiga', client: 'Bubbly Drinks', date: [2, 7, 2023], picCount: 5 },
+  { id: 'hehku', name: 'Hehku', theme: 'Taiga', client: 'SmuutiSkin', date: [14, 3, 2023], picCount: 6 },
   { id: 'lensrappa', name: 'Lensrappa', theme: 'Luxe', client: 'Lensrappa', date: [15, 7, 2024], picCount: 5 },
   { id: 'amour', name: "L'Amour", theme: 'Reformation', client: "L'Amour", date: [3, 10, 2024], picCount: 8 },
   { id: 'radiance', name: 'Radiance', theme: 'Blockshop', client: 'Leselle', date: [21, 1, 2025], picCount: 7 },
-  { id: 'phenomena', name: 'Phenomena', theme: 'Palo Alto', client: 'Phenomena Beauty', date: [9, 4, 2025], picCount: 8 },
   { id: 'noblesse', name: 'Noblesse', theme: 'Noblesse', client: 'Noblesse', date: [26, 6, 2025], picCount: 5 },
+  { id: 'magic', name: 'Magic', theme: 'Maya', client: 'Maya Studio', date: [19, 10, 2023], picCount: 8 },
+  { id: 'luxe', name: 'Luxe', theme: 'Luxe', client: 'La Fleur', date: [27, 4, 2024], picCount: 8 },
 ];
 
 export const PROJECT_COUNT = STORES.length;
@@ -350,7 +364,8 @@ export type Study = {
   kind: ProjectKind;
   title: string;
   imageCount: number;
-  date: [day: number, month: number, year: number];
+  /** Leave out to show the project without a date. */
+  date?: [day: number, month: number, year: number];
   tools: string[];
   /** Screenshot ratio, width/height, for the detail-page carousel. */
   aspect: string;
@@ -1108,7 +1123,6 @@ const STUDIES: Study[] = [
 function getStudy(study: Study, lang: Lang): Project {
   const copy = study.copy[lang];
   const dates = COPY[lang];
-  const [day, month, year] = study.date;
   const images = Array.from(
     { length: study.imageCount },
     (_, i) => `${BASE}projects/${study.id}-${i + 1}.${study.ext ?? 'png'}`
@@ -1118,8 +1132,10 @@ function getStudy(study: Study, lang: Lang): Project {
     kind: study.kind,
     title: study.title,
     category: copy.category,
-    date: `${dates.monthsShort[month - 1]} ${year}`,
-    published: dates.formatPublished(day, dates.monthsFull[month - 1], year),
+    ...(study.date && {
+      date: `${dates.monthsShort[study.date[1] - 1]} ${study.date[2]}`,
+      published: dates.formatPublished(study.date[0], dates.monthsFull[study.date[1] - 1], study.date[2]),
+    }),
     services: copy.services,
     client: copy.client,
     industry: copy.industry,
@@ -1164,8 +1180,14 @@ export function getProjects(lang: Lang): Project[] {
       video: `${BASE}projects/${store.id}-video.mp4`,
     };
   });
-  // AI work leads, then the live web apps; the e-commerce builds follow as delivery proof
-  return [...STUDIES.map((s) => getStudy(s, lang)), ...WEB_APPS.map((s) => getStudy(s, lang)), ...stores];
+  // AI work leads, then the live web apps; the e-commerce builds follow when shown
+  return [
+    ...STUDIES.map((s) => getStudy(s, lang)),
+    ...AUTOMATIONS.map((s) => getStudy(s, lang)),
+    ...(SHOW_OLD_SITES ? WEB_APPS.map((s) => getStudy(s, lang)) : []),
+    ...CLIENT_SITES.map((s) => getStudy(s, lang)),
+    ...(SHOW_STORES ? stores : []),
+  ];
 }
 
 /** Projects in the currently selected site language. */

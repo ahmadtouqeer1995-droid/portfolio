@@ -83,10 +83,10 @@ function Home() {
         websites
       </h1>
 
-      {/* Name watermark — z-10: above the fluid canvas (z-0), below the robot (z-20).
-          Centered on the robot head, which renders 4.6% below screen center
-          (camera at y=0.2, fov 40, distance 6 → 0.2 / 4.37 of the view height). */}
-      <div className='pointer-events-none fixed top-[calc(54.6%_-_70px)] z-10 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none'>
+      {/* Name watermark, as in the first version: centred on the bottom edge,
+          partly cut off. z-10: above the fluid canvas (z-0), so the fluid
+          flows behind the name, and below the robot (z-20). */}
+      <div className='pointer-events-none fixed bottom-0 left-1/2 z-10 -translate-x-1/2 translate-y-[28%] select-none'>
         <span className='text-[18vw] leading-none font-extrabold tracking-tight text-neutral-200'>
           Touqeer
         </span>
@@ -100,9 +100,9 @@ function Home() {
         <Robot />
       </div>
 
-      {/* Tech stack — bottom of the page */}
-      <div className='pointer-events-none fixed right-0 bottom-[66px] left-0 z-30 px-4 sm:bottom-[74px]'>
-        <ToolDock items={stack} size={60} label='Tech stack' />
+      {/* Tech stack — vertical on the left, centred, same gap top and bottom */}
+      <div className='pointer-events-none fixed top-6 bottom-6 left-3 z-30 sm:left-6'>
+        <ToolDock items={stack} size={60} label='Tech stack' orientation='vertical' side='left' />
       </div>
 
       {/* Glass tab-bar menu + language switcher — top right. Home page only.
