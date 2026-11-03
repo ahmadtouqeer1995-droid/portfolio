@@ -71,11 +71,18 @@ function Me() {
         <div className='mx-auto flex w-full max-w-[1100px] flex-col gap-24 px-6 pt-28 pb-28'>
           {/* Intro: taped photo card + the big post-it */}
           <section className='flex flex-col items-center gap-14 md:flex-row md:items-start md:gap-12'>
-            {/* Photo placeholder — drop a real photo here later */}
             <TapedImage tilt={-4} shift={-4} className='shrink-0'>
-              <div className='flex h-52 w-44 flex-col items-center justify-center gap-3 px-4'>
-                <span className='text-6xl font-extrabold tracking-tight text-neutral-300'>AT</span>
-                <span className='font-scrawl text-2xl leading-none font-bold text-neutral-700'>{t('meLabel')}</span>
+              <div className='w-52 p-2.5 pb-3'>
+                <img
+                  src={`${import.meta.env.BASE_URL}ahmad-touqeer.jpg`}
+                  alt='Ahmad Touqeer'
+                  width={800}
+                  height={800}
+                  className='aspect-square w-full object-cover'
+                />
+                <span className='mt-2 block text-center font-scrawl text-2xl leading-none font-bold text-neutral-700'>
+                  {t('meLabel')}
+                </span>
               </div>
             </TapedImage>
 
